@@ -1,4 +1,4 @@
-# radio-u
+# do-things
 *News aggregator with a focus on text to speech functionality*
 
 #### 1. All team members' names and Stony Brook email addresses 
