@@ -9,6 +9,7 @@ import {
 import ContactsHeader from "../components/ContactsHeader"
 import GoBackButton from "../components/GoBackButton"
 import contactsData from "../data/contacts.json"
+import contactsData2 from "../data/contacts2.json"
 import ListContact from "../components/ListContact"
 
 
@@ -16,7 +17,15 @@ export default class ContactsScreen extends React.Component {
   constructor({ navigation }) {
     super();
     this.navigation = navigation;
+    this.state = {
+      added: false
+    }
   }
+
+  change = () => {
+      this.setState({added: true});
+  }
+  
   render() {
     return (
       <View style={styles.container}>
@@ -24,11 +33,11 @@ export default class ContactsScreen extends React.Component {
         <ContactsHeader title="Contacts" />
         <View style={styles.main_container}>
           <FlatList style={styles.action_section}
-            data={contactsData}
+            data={this.state.added?contactsData2:contactsData}
             horizontal={true}
             showsHorizontalScrollIndicator={false}
             renderItem={({ item }) =>
-              <ListContact contact={item} navigation={this.navigation} />
+              <ListContact contact={item} navigation={this.navigation} change={this.change}/>
             }
             keyExtractor={(item, index) => index.toString()}
           />

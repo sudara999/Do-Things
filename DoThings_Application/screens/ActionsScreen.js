@@ -14,7 +14,10 @@ import DothingsHeader from "../components/DothingsHeader";
 import ContactsButton from '../components/ContactsButton';
 import ListAction from '../components/ListAction';
 import actionData from "../data/actions.json";
+import actionData2 from "../data/actions2.json";
 import VideoPlayer from 'react-native-video-controls';
+
+console.disableYellowBox = true; 
 
 export default class ActionsScreen extends React.Component {
   constructor({ navigation, route }) {
@@ -22,6 +25,7 @@ export default class ActionsScreen extends React.Component {
     this.state = {
       videoUri: null,
       modalOpen: false,
+      added:false
     }
     this.navigation = navigation;
     this.route = route;
@@ -30,7 +34,7 @@ export default class ActionsScreen extends React.Component {
   componentWillReceiveProps = () => {
     if( this.route.params?.newAction )
       console.log("mine: " + this.route.params.newAction);
-      this.setState({modalOpen : true});
+      this.setState({modalOpen : true, added: true});
   }
 
   handlePress = (path) => {
@@ -64,7 +68,7 @@ export default class ActionsScreen extends React.Component {
         {!videoUri && <DothingsHeader title="Actions" />}
         {!videoUri && <View style={styles.main_container}>
           <FlatList style={styles.action_section}
-            data={actionData}
+            data={this.state.added?actionData2:actionData}
             horizontal={true}
             showsHorizontalScrollIndicator={false}
             renderItem={({ item }) =>

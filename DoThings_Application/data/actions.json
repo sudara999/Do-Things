@@ -1,27 +1,27 @@
 [
   [
     {
-      "action_name": "Send an email to lawyer",
-      "time_stamp": "2020/05/05",
-      "recorded_by": "Tyler Kim",
-      "path": "./videos/test.mp4"
-    },
-    {
       "action_name": "Check electricity bill",
       "time_stamp": "2020/05/05",
       "recorded_by": "Tyler Kim",
       "path": "./videos/test.mp4"
-    }
-  ],
-  [
+    },
     {
       "action_name": "Open grocery app",
       "time_stamp": "2020/05/05",
       "recorded_by": "Tyler Kim",
       "path": "./videos/test.mp4"
-    },
+    }
+  ],
+  [
     {
       "action_name": "Appointment with dentist",
+      "time_stamp": "2020/05/05",
+      "recorded_by": "Tyler Kim",
+      "path": "./videos/test.mp4"
+    },
+    {
+      "action_name": "Drive Back Home",
       "time_stamp": "2020/05/05",
       "recorded_by": "Tyler Kim",
       "path": "./videos/test.mp4"
@@ -29,13 +29,13 @@
   ],
   [
     {
-      "action_name": "Drive Back Home",
+      "action_name": "Set Alarm for Tommorrow",
       "time_stamp": "2020/05/05",
       "recorded_by": "Tyler Kim",
       "path": "./videos/test.mp4"
     },
     {
-      "action_name": "Set Alarm for Tommorrow",
+      "action_name": "Nonee",
       "time_stamp": "2020/05/05",
       "recorded_by": "Tyler Kim",
       "path": "./videos/test.mp4"

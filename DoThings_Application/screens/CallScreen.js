@@ -50,7 +50,7 @@ export default class CallScreen extends React.Component {
                         <TouchableOpacity onPress={this.handlePress}>
                             <Image source={require('../img/accept.png')} style={{top: 10}}/>
                         </TouchableOpacity>
-                        <TouchableOpacity onPress={this.playEnded}>
+                        <TouchableOpacity onPress={()=>this.navigation.navigate("ActionsScreen")}>
                           <Image source={require('../img/decline.png')} style={{top: 10}}/>
                         </TouchableOpacity>
                     </View>

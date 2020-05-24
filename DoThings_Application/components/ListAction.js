@@ -18,13 +18,13 @@ const ListAction = ({ action, handlePress }) => {
                         {action[0].action_name}
                     </Text></ImageBackground>
             </TouchableOpacity>
-            <TouchableOpacity style={styles.listAction} onPress={() => handlePress((action[1]).path)} >
+            {(action[1].action_name!="Nonee") && <TouchableOpacity style={styles.listAction} onPress={() => handlePress((action[1]).path)} >
                 <ImageBackground style={styles.postIt} source={require("../img/post_it.png")}
                 >
                     <Text style={styles.text}>
                         {action[1].action_name}
                     </Text></ImageBackground>
-            </TouchableOpacity>
+            </TouchableOpacity>}
         </View>
     );
 };

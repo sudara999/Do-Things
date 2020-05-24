@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {
     View,
     Text,
@@ -10,7 +10,12 @@ import {
 } from 'react-native';
 // import Icon from 'react-native-vector-icons/dist/FontAwesome';
 
-const ListContact = ({ contact, navigation }) => {
+const ListContact = ({ contact, navigation, change }) => {
+    const [cardImage, useCardImage] = useState([
+        require('../img/user_photo.png'),
+        require('../img/user_photo_2.png'),
+        require('../img/user_photo_3.png'), 
+        require('../img/user_photo_4.png')]);
     const shareOptions = {
         title: 'Whatisgoing',
         message: 'This person requests your help on the app DoThings', // Note that according to the documentation at least one of "message" or "url" fields is required
@@ -23,7 +28,7 @@ const ListContact = ({ contact, navigation }) => {
             {!last &&
                 <View style={styles.listContact}>
                     <ImageBackground style={styles.contact} source={require("../img/contact.png")}>
-                        <Image style={styles.user_photo} source={require("../img/user_photo.png")}></Image>
+                        <Image style={styles.user_photo} source={cardImage[contact.id]}></Image>
                         <Text style={styles.text}>
                             {contact.helper_name}
                         </Text>
@@ -45,7 +50,7 @@ const ListContact = ({ contact, navigation }) => {
                         <Text style={styles.info_2}>
                             A helper can create actions for you to replay later.
                         </Text>
-                        <TouchableOpacity onPress={() => Share.share(shareOptions)}>
+                        <TouchableOpacity onPress={() => {Share.share(shareOptions);change()}}>
                             <Image style={styles.button} source={require("../img/add_a_helper_button.png")}></Image>
                         </TouchableOpacity>
                     </ImageBackground>
