@@ -33,6 +33,10 @@ import { createStackNavigator } from '@react-navigation/stack';
 const Stack = createStackNavigator();
 
 import Contacts from "./Contacts"
+import TransitionToHelper from './TransitionToHelper';
+import CallScreen from './CallScreen';
+
+import sampleheader from "./components/sampleheader";
 
 function reactIntro({ navigation }){
   return (
@@ -56,8 +60,10 @@ function reactIntro({ navigation }){
               screen and then come back to see your edits.
             </Text>
             <Button
-              title="Go to Home"
-              onPress={() => navigation.navigate('Home')}
+              title="Go to Contacts"
+              onPress={() => navigation.navigate('Contacts',{
+                test:'helloworld'
+              })}
             />
           </View>
           <View style={styles.sectionContainer}>
@@ -86,12 +92,14 @@ function reactIntro({ navigation }){
   );
 }
 
-export default function App() {
+export default function App({navigation}) {
   return (
     <NavigationContainer>{
       <Stack.Navigator initialRouteName="Intro">
-        <Stack.Screen name="Home" component={Contacts} />
         <Stack.Screen name="Intro" component={reactIntro} />
+        <Stack.Screen name="Contacts" component={Contacts} options={{headerTitle: sampleheader, headerLeft: null}}/>
+        <Stack.Screen name="Transition" component={TransitionToHelper} />
+        <Stack.Screen name="CallScreen" options={{headerShown: false}} component={CallScreen} />
       </Stack.Navigator>
       }</NavigationContainer>
   );
