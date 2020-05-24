@@ -4,7 +4,8 @@ import {
   StyleSheet,
   View,
   FlatList,
-  TouchableOpacity
+  TouchableOpacity,
+  ScrollView
 } from 'react-native';
 import DothingsHeader from "../components/DothingsHeader";
 import ContactsButton from '../components/ContactsButton';
@@ -34,13 +35,21 @@ export default class ActionsScreen extends React.Component {
       <View style={styles.container}>
         {!videoUri && <DothingsHeader title="Actions" />}
         {!videoUri && <View style={styles.main_container}>
-          <FlatList
+          <FlatList style={styles.action_section}
             data={actionData}
+            horizontal={true}
+            showsHorizontalScrollIndicator={false}
             renderItem={({ item }) =>
               <ListAction action={item} handlePress={this.handlePress} />
             }
             keyExtractor={(item, index) => index.toString()}
-          /></View>}
+          />
+          {/* <ScrollView horizontal={true}>
+              {actionData.map((item, index) => {
+                return (<ListAction action={item} handlePress={this.handlePress}></ListAction>)
+              })}
+            </ScrollView> */}
+        </View>}
 
         {videoUri && <VideoPlayer source={{ uri: "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/TearsOfSteel.mp4" }} onEnd={this.playEnded}
           disableFullscreen={true}
@@ -61,13 +70,20 @@ export default class ActionsScreen extends React.Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-
   },
   main_container: {
     backgroundColor: "rgba(214, 146, 118,1.0)",
-    padding: 10,
+    paddingVertical: 10,
+    paddingHorizontal: 12,
     flex: 3,
-  }
+  },
+  action_section: {
+    backgroundColor: 'white',
+    flex: 3,
+    padding: 10,
+    borderRadius: 10,
+    overflow: "hidden",
+  },
 });
 
 

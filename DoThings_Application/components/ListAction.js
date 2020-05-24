@@ -22,9 +22,10 @@ const ListAction = ({ action, handlePress }) => {
 const styles = StyleSheet.create({
     listAction: {
         padding: 15,
-        backgroundColor: '#f8f8f8',
+
         borderBottomWidth: 1,
-        borderColor: '#eee',
+        alignItems: 'center',
+        justifyContent: 'center',
     },
 
 });
