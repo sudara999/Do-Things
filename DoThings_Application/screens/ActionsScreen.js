@@ -5,6 +5,10 @@ import {
   View,
   FlatList,
   TouchableOpacity,
+  Modal,
+  ImageBackground,
+  Image,
+  Text
 } from 'react-native';
 import DothingsHeader from "../components/DothingsHeader";
 import ContactsButton from '../components/ContactsButton';
@@ -16,7 +20,8 @@ export default class ActionsScreen extends React.Component {
   constructor({ navigation }) {
     super();
     this.state = {
-      videoUri: null
+      videoUri: null,
+      modalOpen: true
     }
     this.navigation = navigation;
   }
@@ -30,9 +35,22 @@ export default class ActionsScreen extends React.Component {
   }
   render() {
     const videoUri = this.state.videoUri;
+    const modalOpen = this.state.modalOpen;
     console.log(videoUri);
     return (
       <View style={styles.container}>
+        <Modal visible={modalOpen} transparent={true} onRequestClose={() => this.setState({ modalOpen: false })}>
+          <View style={styles.modal_container}><ImageBackground style={styles.modal_background} animationType={"slide"}
+            transparent={false} source={require("../img/modal_background.png")}>
+            <Image style={styles.check_it_out_button} source={require("../img/back_modal_button.png")} />
+            <Text>A new action has been added </Text>
+            <TouchableOpacity onPress={() => this.setState({ modalOpen: false })} >
+              <Image style={styles.check_it_out_button} source={require("../img/check_it_out_button.png")} />
+            </TouchableOpacity>
+          </ImageBackground></View>
+
+
+        </Modal>
         {!videoUri && <DothingsHeader title="Actions" />}
         {!videoUri && <View style={styles.main_container}>
           <FlatList style={styles.action_section}
@@ -65,6 +83,16 @@ export default class ActionsScreen extends React.Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+  },
+  modal_container: {
+    alignItems: 'center',
+    justifyContent: 'center',
+    flex: 3,
+    backgroundColor: "rgba(0,0,0,0.4)"
+  },
+  modal_background: {
+    width: 300,
+    height: 300
   },
   main_container: {
     backgroundColor: "rgba(214, 146, 118,1.0)",
