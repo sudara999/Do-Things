@@ -36,7 +36,7 @@ import Contacts from "./Contacts"
 import TransitionToHelper from './TransitionToHelper';
 import CallScreen from './CallScreen';
 
-import sampleheader from "./components/sampleheader";
+import DothingsHeader from "./components/DothingsHeader";
 import macroScreen from "./screens/macroScreen";
 
 function reactIntro({ navigation }){
@@ -68,9 +68,7 @@ function reactIntro({ navigation }){
             />
             <Button
               title="Testing Macro Screen"
-              onPress={() => navigation.navigate('macroScreen',{
-                test:'helloworld'
-              })}
+              onPress={() => navigation.navigate('macroScreen')}
             />
           </View>
           <View style={styles.sectionContainer}>
@@ -102,12 +100,12 @@ function reactIntro({ navigation }){
 export default function App({navigation}) {
   return (
     <NavigationContainer>{
-      <Stack.Navigator initialRouteName="Intro">
+      <Stack.Navigator initialRouteName="macroScreen">
         <Stack.Screen name="Intro" component={reactIntro} />
-        <Stack.Screen name="Contacts" component={Contacts} options={{headerTitle: sampleheader, headerLeft: null}}/>
+        <Stack.Screen name="Contacts" component={Contacts} options={{headerTitle:()=><DothingsHeader title="Contacts"/>, headerLeft:null}}/>
         <Stack.Screen name="Transition" component={TransitionToHelper} />
         <Stack.Screen name="CallScreen" options={{headerShown: false}} component={CallScreen} />
-        <Stack.Screen name="macroScreen" component={macroScreen} />
+        <Stack.Screen name="macroScreen" component={macroScreen} options={{headerTitle:()=><DothingsHeader title="Actions"/>, headerLeft:null}}/>
       </Stack.Navigator>
       }</NavigationContainer>
   );
