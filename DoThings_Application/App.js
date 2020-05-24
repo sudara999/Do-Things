@@ -35,6 +35,7 @@ import ContactsScreen from "./screens/ContactsScreen"
 import TransitionToHelper from './TransitionToHelper';
 import CallScreen from './screens/CallScreen';
 import ActionsScreen from "./screens/ActionsScreen";
+import EndScreen from "./screens/EndScreen";
 // import DothingsHeader from "./components/DothingsHeader";
 
 
@@ -107,6 +108,7 @@ export default function App({ navigation }) {
         <Stack.Screen name="CallScreen" options={{ headerShown: false }} component={CallScreen} />
         {/* <Stack.Screen name="macroScreen" component={macroScreen} options={{headerTitle:()=><DothingsHeader title="Actions"/>, headerLeft:null}}/> */}
         <Stack.Screen name="ActionsScreen" component={ActionsScreen} options={{ headerShown: false }} />
+        <Stack.Screen name="EndScreen" component={EndScreen} options={{ headerShown: false }} />
       </Stack.Navigator>
     }</NavigationContainer>
   );
