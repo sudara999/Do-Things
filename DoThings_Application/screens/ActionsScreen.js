@@ -5,7 +5,6 @@ import {
   View,
   FlatList,
   TouchableOpacity,
-  ScrollView
 } from 'react-native';
 import DothingsHeader from "../components/DothingsHeader";
 import ContactsButton from '../components/ContactsButton';
@@ -44,11 +43,6 @@ export default class ActionsScreen extends React.Component {
             }
             keyExtractor={(item, index) => index.toString()}
           />
-          {/* <ScrollView horizontal={true}>
-              {actionData.map((item, index) => {
-                return (<ListAction action={item} handlePress={this.handlePress}></ListAction>)
-              })}
-            </ScrollView> */}
         </View>}
 
         {videoUri && <VideoPlayer source={{ uri: "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/TearsOfSteel.mp4" }} onEnd={this.playEnded}
