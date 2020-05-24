@@ -17,13 +17,20 @@ import actionData from "../data/actions.json";
 import VideoPlayer from 'react-native-video-controls';
 
 export default class ActionsScreen extends React.Component {
-  constructor({ navigation }) {
+  constructor({ navigation, route }) {
     super();
     this.state = {
       videoUri: null,
-      modalOpen: true
+      modalOpen: false,
     }
     this.navigation = navigation;
+    this.route = route;
+  }
+
+  componentWillReceiveProps = () => {
+    if( this.route.params?.newAction )
+      console.log("mine: " + this.route.params.newAction);
+      this.setState({modalOpen : true});
   }
 
   handlePress = (path) => {
@@ -42,7 +49,9 @@ export default class ActionsScreen extends React.Component {
         <Modal visible={modalOpen} transparent={true} onRequestClose={() => this.setState({ modalOpen: false })}>
           <View style={styles.modal_container}><ImageBackground style={styles.modal_background} animationType={"slide"}
             transparent={false} source={require("../img/modal_background.png")}>
+               <TouchableOpacity onPress={() => this.setState({ modalOpen: false })} >
             <Image style={styles.back_modal_button} source={require("../img/back_modal_button.png")} />
+            </TouchableOpacity>
             <Text style={styles.modal_text}>A new action has been added </Text>
             <TouchableOpacity onPress={() => this.setState({ modalOpen: false })} >
               <Image style={styles.check_it_out_button} source={require("../img/check_it_out_button.png")} />
