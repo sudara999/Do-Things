@@ -42,8 +42,8 @@ export default class ActionsScreen extends React.Component {
         <Modal visible={modalOpen} transparent={true} onRequestClose={() => this.setState({ modalOpen: false })}>
           <View style={styles.modal_container}><ImageBackground style={styles.modal_background} animationType={"slide"}
             transparent={false} source={require("../img/modal_background.png")}>
-            <Image style={styles.check_it_out_button} source={require("../img/back_modal_button.png")} />
-            <Text>A new action has been added </Text>
+            <Image style={styles.back_modal_button} source={require("../img/back_modal_button.png")} />
+            <Text style={styles.modal_text}>A new action has been added </Text>
             <TouchableOpacity onPress={() => this.setState({ modalOpen: false })} >
               <Image style={styles.check_it_out_button} source={require("../img/check_it_out_button.png")} />
             </TouchableOpacity>
@@ -90,10 +90,28 @@ const styles = StyleSheet.create({
     flex: 3,
     backgroundColor: "rgba(0,0,0,0.4)"
   },
-  modal_background: {
+  back_modal_button: {
+    marginVertical: 15
+  },
+  modal_text: {
+    fontSize: 24,
+    fontFamily: "Lato",
+    fontWeight: "normal",
     width: 300,
+    height: 75,
+    marginVertical: 10,
+    marginLeft: 20,
+    textAlign: "center",
+  },
+  modal_background: {
+    width: 350,
     height: 300
   },
+
+  check_it_out_button: {
+    marginVertical: 25
+  },
+
   main_container: {
     backgroundColor: "rgba(214, 146, 118,1.0)",
     paddingVertical: 10,
