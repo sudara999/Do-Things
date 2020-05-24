@@ -21,7 +21,7 @@ export default class ActionsScreen extends React.Component {
     super();
     this.state = {
       videoUri: null,
-      modalOpen: true
+      modalOpen: false
     }
     this.navigation = navigation;
   }
@@ -40,9 +40,12 @@ export default class ActionsScreen extends React.Component {
     return (
       <View style={styles.container}>
         <Modal visible={modalOpen} transparent={true} onRequestClose={() => this.setState({ modalOpen: false })}>
+
           <View style={styles.modal_container}><ImageBackground style={styles.modal_background} animationType={"slide"}
             transparent={false} source={require("../img/modal_background.png")}>
-            <Image style={styles.back_modal_button} source={require("../img/back_modal_button.png")} />
+            <TouchableOpacity onPress={() => this.setState({ modalOpen: false })} >
+              <Image style={styles.back_modal_button} source={require("../img/back_modal_button.png")} />
+            </TouchableOpacity >
             <Text style={styles.modal_text}>A new action has been added </Text>
             <TouchableOpacity onPress={() => this.setState({ modalOpen: false })} >
               <Image style={styles.check_it_out_button} source={require("../img/check_it_out_button.png")} />
@@ -63,7 +66,8 @@ export default class ActionsScreen extends React.Component {
             keyExtractor={(item, index) => index.toString()}
           />
         </View>}
-        {videoUri && <VideoPlayer source={{ uri: "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/TearsOfSteel.mp4" }} onEnd={this.playEnded}
+        {videoUri && <VideoPlayer fullscreen={true} resizeMode="cover" source={require("../videos/sample1.mp4")}
+          onEnd={this.playEnded}
           disableFullscreen={true}
           disablePlayPause={true}
           disableSeekbar={true}
