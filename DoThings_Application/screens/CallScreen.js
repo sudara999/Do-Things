@@ -38,7 +38,6 @@ export default class CallScreen extends React.Component {
         const videoUri = this.state.videoUri;
         return(
             <View style={{flex:1, backgroundColor:"white", alignItems:"center"}}>
-            {/* <ImageBackground source={require("./img/callFrame.png")} style={{flex:1, alignItems:"center"}}> */}
                 {!videoUri && <View style={{flex:1,top:100, backgroundColor:"white", width: 300, height: 300}}>
                     <View style={{backgroundColor: "white", flex: 1, justifyContent: "center", alignItems:"center"}}>
                         <Image source={require('../img/profileIcon.png')} style={{height:200, width:200}}/>
@@ -54,7 +53,7 @@ export default class CallScreen extends React.Component {
                         <Image source={require('../img/decline.png')} style={{top: 10}}/>
                     </View>
                 </View>}
-                {videoUri && <VideoPlayer style={{}} source={{ uri: "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/TearsOfSteel.mp4" }} onEnd={this.playEnded}
+                {videoUri && <VideoPlayer fullscreen={true} resizeMode="cover" style={{flex:1}} source={require("../videos/sample1.mp4")} onEnd={this.playEnded}
                             disableFullscreen={true}
                             disablePlayPause={true}
                             disableSeekbar={true}
@@ -62,7 +61,6 @@ export default class CallScreen extends React.Component {
                             disableVolume={true}
                             disableBack={true}
                             />}     
-            {/* </ImageBackground> */}
         </View>
         );
     };
