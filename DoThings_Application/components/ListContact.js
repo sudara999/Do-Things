@@ -9,21 +9,23 @@ import {
 } from 'react-native';
 // import Icon from 'react-native-vector-icons/dist/FontAwesome';
 
-const ListContact = ({ contact }) => {
+const ListContact = ({ contact, navigation }) => {
     return (
         <View style={styles.container}>
-            <TouchableOpacity style={styles.listContact}>
+            <View style={styles.listContact}>
                 <ImageBackground style={styles.contact} source={require("../img/contact.png")}>
                     <Image style={styles.user_photo} source={require("../img/user_photo.png")}></Image>
                     <Text style={styles.text}>
                         {contact.helper_name}
                     </Text>
                     <Text style={styles.info}>
-                        helped you {contact.helper_name} times
+                        helped you {contact.times} times
                         </Text>
-                    <Image style={styles} source={require("../img/ask_for_help_button.png")}></Image>
+                    <TouchableOpacity onPress={() => navigation.navigate("Transition")}>
+                        <Image style={styles.button} source={require("../img/ask_for_help_button.png")}></Image>
+                    </TouchableOpacity>
                 </ImageBackground>
-            </TouchableOpacity>
+            </View>
         </View>
     );
 };
@@ -33,11 +35,13 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'center',
     },
-
     listContact: {
         padding: 15,
         alignItems: 'center',
         justifyContent: 'center',
+    },
+    user_photo: {
+        marginTop: 20
     },
     contact: {
         width: 250,
@@ -64,7 +68,7 @@ const styles = StyleSheet.create({
         fontStyle: "italic",
         width: 230,
         height: 125,
-        textAlign: "center",
+        textAlign: "center"
     }
 });
 

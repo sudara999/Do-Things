@@ -30,6 +30,7 @@ export default class ActionsScreen extends React.Component {
   }
   render() {
     const videoUri = this.state.videoUri;
+    console.log(videoUri);
     return (
       <View style={styles.container}>
         {!videoUri && <DothingsHeader title="Actions" />}
@@ -44,7 +45,6 @@ export default class ActionsScreen extends React.Component {
             keyExtractor={(item, index) => index.toString()}
           />
         </View>}
-
         {videoUri && <VideoPlayer source={{ uri: "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/TearsOfSteel.mp4" }} onEnd={this.playEnded}
           disableFullscreen={true}
           disablePlayPause={true}
@@ -53,9 +53,10 @@ export default class ActionsScreen extends React.Component {
           disableVolume={true}
           disableBack={true}
         />}
-        <TouchableOpacity onPress={() => this.navigation.navigate("ContactsScreen")} activeOpacity={1}>
-          {!videoUri && <ContactsButton title="Actions" nav={this.navigation} />}
-        </TouchableOpacity>
+        {!videoUri &&
+          <TouchableOpacity onPress={() => this.navigation.navigate("ContactsScreen")} activeOpacity={1}>
+            <ContactsButton title="Actions" nav={this.navigation} />
+          </TouchableOpacity>}
       </View>
     );
   }

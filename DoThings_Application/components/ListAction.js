@@ -10,17 +10,17 @@ import {
 
 const ListAction = ({ action, handlePress }) => {
     return (
-        <View style={styles.container}>
-            <TouchableOpacity style={styles.listAction}>
+        <View style={styles.container} >
+            <TouchableOpacity style={styles.listAction} onPress={() => handlePress((action[1]).path)}>
                 <ImageBackground style={styles.postIt} source={require("../img/post_it.png")}
-                    onPress={() => handlePress(action[0].path)}>
+                >
                     <Text style={styles.text}>
                         {action[0].action_name}
                     </Text></ImageBackground>
             </TouchableOpacity>
-            <TouchableOpacity style={styles.listAction}>
+            <TouchableOpacity style={styles.listAction} onPress={() => handlePress((action[1]).path)} >
                 <ImageBackground style={styles.postIt} source={require("../img/post_it.png")}
-                    onPress={() => handlePress(action[1].path)}>
+                >
                     <Text style={styles.text}>
                         {action[1].action_name}
                     </Text></ImageBackground>

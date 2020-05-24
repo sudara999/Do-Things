@@ -35,7 +35,7 @@ export default class ContactsScreen extends React.Component {
             horizontal={true}
             showsHorizontalScrollIndicator={false}
             renderItem={({ item }) =>
-              <ListContact contact={item} />
+              <ListContact contact={item} navigation={this.navigation} />
             }
             keyExtractor={(item, index) => index.toString()}
           />
