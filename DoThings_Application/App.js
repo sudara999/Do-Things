@@ -102,10 +102,12 @@ export default function App({navigation}) {
     <NavigationContainer>{
       <Stack.Navigator initialRouteName="macroScreen">
         <Stack.Screen name="Intro" component={reactIntro} />
-        <Stack.Screen name="Contacts" component={Contacts} options={{headerTitle:()=><DothingsHeader title="Contacts"/>, headerLeft:null}}/>
+        {/* <Stack.Screen name="Contacts" component={Contacts} options={{headerTitle:()=><DothingsHeader title="Contacts"/>, headerLeft:null}}/> */}
+        <Stack.Screen name="Contacts" component={Contacts} options={{headerShown:false}}/>
         <Stack.Screen name="Transition" component={TransitionToHelper} />
         <Stack.Screen name="CallScreen" options={{headerShown: false}} component={CallScreen} />
-        <Stack.Screen name="macroScreen" component={macroScreen} options={{headerTitle:()=><DothingsHeader title="Actions"/>, headerLeft:null}}/>
+        {/* <Stack.Screen name="macroScreen" component={macroScreen} options={{headerTitle:()=><DothingsHeader title="Actions"/>, headerLeft:null}}/> */}
+        <Stack.Screen name="macroScreen" component={macroScreen} options={{headerShown:false}}/>
       </Stack.Navigator>
       }</NavigationContainer>
   );

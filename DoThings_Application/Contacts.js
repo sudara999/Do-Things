@@ -12,6 +12,8 @@ import {
   Share,
 } from 'react-native';
 
+import DothingsHeader from "./components/DothingsHeader";
+
 import {
   Colors,
 } from 'react-native/Libraries/NewAppScreen';
@@ -26,6 +28,7 @@ const shareOptions = {
 Contacts = ({route, navigation}) => {
     return (
       <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
+        <DothingsHeader title="Contacts" />
         {/* <Container style={{height: 600, width: 400}}> */}
         <Text>Here are some helpers you can ask</Text>
           <ScrollView horizontal={true} style={{flex:1}}>
