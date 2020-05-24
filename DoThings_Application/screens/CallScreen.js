@@ -31,8 +31,8 @@ export default class CallScreen extends React.Component {
       }
       playEnded = () => {
         this.setState({ videoUri: null });
-        Alert.alert("TESTING ENDING");
-        // this.navigation.navigate("EndScreen");
+        // Alert.alert("TESTING ENDING");
+        this.navigation.navigate("EndScreen");
       }    
     render() {
         const videoUri = this.state.videoUri;
@@ -50,7 +50,9 @@ export default class CallScreen extends React.Component {
                         <TouchableOpacity onPress={this.handlePress}>
                             <Image source={require('../img/accept.png')} style={{top: 10}}/>
                         </TouchableOpacity>
-                        <Image source={require('../img/decline.png')} style={{top: 10}}/>
+                        <TouchableOpacity onPress={this.playEnded}>
+                          <Image source={require('../img/decline.png')} style={{top: 10}}/>
+                        </TouchableOpacity>
                     </View>
                 </View>}
                 {videoUri && <VideoPlayer fullscreen={true} resizeMode="cover" style={{flex:1}} source={require("../videos/sample1.mp4")} onEnd={this.playEnded}
