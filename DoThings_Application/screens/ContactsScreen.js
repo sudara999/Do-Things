@@ -3,21 +3,14 @@ import {
   StyleSheet,
   FlatList,
   View,
-  TouchableOpacity,
-  Button,
-  Share,
+  TouchableOpacity
 } from 'react-native';
 
 import ContactsHeader from "../components/ContactsHeader"
 import GoBackButton from "../components/GoBackButton"
 import contactsData from "../data/contacts.json"
 import ListContact from "../components/ListContact"
-const shareOptions = {
-  title: 'Whatisgoing',
-  message: 'This person requests your help on the app DoThings', // Note that according to the documentation at least one of "message" or "url" fields is required
-  url: 'On over here please',
-  subject: 'Check this out'
-};
+
 
 export default class ContactsScreen extends React.Component {
   constructor({ navigation }) {
@@ -39,6 +32,7 @@ export default class ContactsScreen extends React.Component {
             }
             keyExtractor={(item, index) => index.toString()}
           />
+
 
           {/* <Button title="Add a helper" onPress={() => Share.share(shareOptions)} /> */}
         </View>
@@ -67,5 +61,10 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     overflow: "hidden",
   },
+  add_a_helper_background: {
+    padding: 15,
+    alignItems: 'center',
+    justifyContent: 'center',
+  }
 });
 
