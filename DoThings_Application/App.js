@@ -37,6 +37,7 @@ import TransitionToHelper from './TransitionToHelper';
 import CallScreen from './CallScreen';
 
 import sampleheader from "./components/sampleheader";
+import macroScreen from "./screens/macroScreen";
 
 function reactIntro({ navigation }){
   return (
@@ -62,6 +63,12 @@ function reactIntro({ navigation }){
             <Button
               title="Go to Contacts"
               onPress={() => navigation.navigate('Contacts',{
+                test:'helloworld'
+              })}
+            />
+            <Button
+              title="Testing Macro Screen"
+              onPress={() => navigation.navigate('macroScreen',{
                 test:'helloworld'
               })}
             />
@@ -100,6 +107,7 @@ export default function App({navigation}) {
         <Stack.Screen name="Contacts" component={Contacts} options={{headerTitle: sampleheader, headerLeft: null}}/>
         <Stack.Screen name="Transition" component={TransitionToHelper} />
         <Stack.Screen name="CallScreen" options={{headerShown: false}} component={CallScreen} />
+        <Stack.Screen name="macroScreen" component={macroScreen} />
       </Stack.Navigator>
       }</NavigationContainer>
   );
