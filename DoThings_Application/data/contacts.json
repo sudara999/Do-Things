@@ -1,14 +1,22 @@
 [
   {
     "helper_name": "Tyler Kim",
-    "times": 3
+    "times": 3,
+    "last": false
   },
   {
     "helper_name": "Guy Jones",
-    "times": 4
+    "times": 4,
+    "last": false
   },
   {
     "helper_name": "Claire Mines",
-    "times": 1
+    "times": 1,
+    "last": false
+  },
+  {
+    "helper_name": "John Kyle",
+    "times": 1,
+    "last": true
   }
 ]

@@ -47,6 +47,7 @@ export default class ActionsScreen extends React.Component {
     return (
       <View style={styles.container}>
         <Modal visible={modalOpen} transparent={true} onRequestClose={() => this.setState({ modalOpen: false })}>
+
           <View style={styles.modal_container}><ImageBackground style={styles.modal_background} animationType={"slide"}
             transparent={false} source={require("../img/modal_background.png")}>
                <TouchableOpacity onPress={() => this.setState({ modalOpen: false })} >
@@ -72,7 +73,8 @@ export default class ActionsScreen extends React.Component {
             keyExtractor={(item, index) => index.toString()}
           />
         </View>}
-        {videoUri && <VideoPlayer source={{ uri: "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/TearsOfSteel.mp4" }} onEnd={this.playEnded}
+        {videoUri && <VideoPlayer fullscreen={true} resizeMode="cover" source={require("../videos/sample1.mp4")}
+          onEnd={this.playEnded}
           disableFullscreen={true}
           disablePlayPause={true}
           disableSeekbar={true}
