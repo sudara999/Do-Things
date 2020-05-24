@@ -1,9 +1,9 @@
 import React from 'react';
-import { View, Text, Image, StyleSheet, Alert } from 'react-native';
+import { View, Image, StyleSheet } from 'react-native';
 
 const ContactsButton = ({ title }) => {
     return (
-        <View style={styles.footer} onPress={()=>Alert.alert("test")}>
+        <View style={styles.footer} onPress={() => Alert.alert("test")}>
             <Image style={styles.logo} source={require("../img/contacts_button.png")}></Image>
         </View>
     );

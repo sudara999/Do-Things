@@ -15,7 +15,6 @@ import {
   Text,
   StatusBar,
   Button,
-  Alert
 } from 'react-native';
 
 import {
@@ -32,84 +31,84 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 const Stack = createStackNavigator();
 
-import Contacts from "./Contacts"
+import ContactsScreen from "./screens/ContactsScreen"
 import TransitionToHelper from './TransitionToHelper';
-import CallScreen from './CallScreen';
+import CallScreen from './screens/CallScreen';
+import ActionsScreen from "./screens/ActionsScreen";
+// import DothingsHeader from "./components/DothingsHeader";
 
-import DothingsHeader from "./components/DothingsHeader";
-import macroScreen from "./screens/macroScreen";
 
-function reactIntro({ navigation }){
+function reactIntro({ navigation }) {
   return (
     <>
-    <StatusBar barStyle="dark-content" />
-    <SafeAreaView>
-      <ScrollView
-        contentInsetAdjustmentBehavior="automatic"
-        style={styles.scrollView}>
-        <Header />
-        {global.HermesInternal == null ? null : (
-          <View style={styles.engine}>
-            <Text style={styles.footer}>Engine: Hermes</Text>
-          </View>
-        )}
-        <View style={styles.body}>
-          <View style={styles.sectionContainer}>
-            <Text style={styles.sectionTitle}>Step One</Text>
-            <Text style={styles.sectionDescription}>
-              Edit <Text style={styles.highlight}>App.js</Text> to change this
+      <StatusBar barStyle="dark-content" />
+      <SafeAreaView>
+        <ScrollView
+          contentInsetAdjustmentBehavior="automatic"
+          style={styles.scrollView}>
+          <Header />
+          {global.HermesInternal == null ? null : (
+            <View style={styles.engine}>
+              <Text style={styles.footer}>Engine: Hermes</Text>
+            </View>
+          )}
+          <View style={styles.body}>
+            <View style={styles.sectionContainer}>
+              <Text style={styles.sectionTitle}>Step One</Text>
+              <Text style={styles.sectionDescription}>
+                Edit <Text style={styles.highlight}>App.js</Text> to change this
               screen and then come back to see your edits.
             </Text>
-            <Button
-              title="Go to Contacts"
-              onPress={() => navigation.navigate('Contacts',{
-                test:'helloworld'
-              })}
-            />
-            <Button
-              title="Testing Macro Screen"
-              onPress={() => navigation.navigate('macroScreen')}
-            />
-          </View>
-          <View style={styles.sectionContainer}>
-            <Text style={styles.sectionTitle}>See Your Changes</Text>
-            <Text style={styles.sectionDescription}>
-              <ReloadInstructions />
+              <Button
+                title="Go to Contacts"
+                onPress={() => navigation.navigate('Contacts', {
+                  test: 'helloworld'
+                })}
+              />
+              <Button
+                title="Testing Macro Screen"
+                onPress={() => navigation.navigate('macroScreen')}
+              />
+            </View>
+            <View style={styles.sectionContainer}>
+              <Text style={styles.sectionTitle}>See Your Changes</Text>
+              <Text style={styles.sectionDescription}>
+                <ReloadInstructions />
+              </Text>
+            </View>
+            <View style={styles.sectionContainer}>
+              <Text style={styles.sectionTitle}>Debug</Text>
+              <Text style={styles.sectionDescription}>
+                <DebugInstructions />
+              </Text>
+            </View>
+            <View style={styles.sectionContainer}>
+              <Text style={styles.sectionTitle}>Learn More</Text>
+              <Text style={styles.sectionDescription}>
+                Read the docs to discover what to do next:
             </Text>
+            </View>
+            <LearnMoreLinks />
           </View>
-          <View style={styles.sectionContainer}>
-            <Text style={styles.sectionTitle}>Debug</Text>
-            <Text style={styles.sectionDescription}>
-              <DebugInstructions />
-            </Text>
-          </View>
-          <View style={styles.sectionContainer}>
-            <Text style={styles.sectionTitle}>Learn More</Text>
-            <Text style={styles.sectionDescription}>
-              Read the docs to discover what to do next:
-            </Text>
-          </View>
-          <LearnMoreLinks />
-        </View>
-      </ScrollView>
-    </SafeAreaView>
-  </>
+        </ScrollView>
+      </SafeAreaView>
+    </>
   );
 }
 
-export default function App({navigation}) {
+export default function App({ navigation }) {
   return (
     <NavigationContainer>{
-      <Stack.Navigator initialRouteName="macroScreen">
+      <Stack.Navigator initialRouteName="ActionsScreen">
         <Stack.Screen name="Intro" component={reactIntro} />
         {/* <Stack.Screen name="Contacts" component={Contacts} options={{headerTitle:()=><DothingsHeader title="Contacts"/>, headerLeft:null}}/> */}
-        <Stack.Screen name="Contacts" component={Contacts} options={{headerShown:false}}/>
+        <Stack.Screen name="ContactsScreen" component={ContactsScreen} options={{ headerShown: false }} />
         <Stack.Screen name="Transition" component={TransitionToHelper} />
-        <Stack.Screen name="CallScreen" options={{headerShown: false}} component={CallScreen} />
+        <Stack.Screen name="CallScreen" options={{ headerShown: false }} component={CallScreen} />
         {/* <Stack.Screen name="macroScreen" component={macroScreen} options={{headerTitle:()=><DothingsHeader title="Actions"/>, headerLeft:null}}/> */}
-        <Stack.Screen name="macroScreen" component={macroScreen} options={{headerShown:false}}/>
+        <Stack.Screen name="ActionsScreen" component={ActionsScreen} options={{ headerShown: false }} />
       </Stack.Navigator>
-      }</NavigationContainer>
+    }</NavigationContainer>
   );
 }
 

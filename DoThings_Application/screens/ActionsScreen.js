@@ -3,10 +3,7 @@ import React from 'react';
 import {
   StyleSheet,
   View,
-  Text,
-  Alert,
   FlatList,
-  Button,
   TouchableOpacity
 } from 'react-native';
 import DothingsHeader from "../components/DothingsHeader";
@@ -15,8 +12,8 @@ import ListAction from '../components/ListAction';
 import actionData from "../data/actions.json";
 import VideoPlayer from 'react-native-video-controls';
 
-export default class macroScreen extends React.Component {
-  constructor({navigation}) {
+export default class ActionsScreen extends React.Component {
+  constructor({ navigation }) {
     super();
     this.state = {
       videoUri: null
@@ -31,7 +28,7 @@ export default class macroScreen extends React.Component {
   playEnded = () => {
     this.setState({ videoUri: null });
   }
-  render(navigation) {
+  render() {
     const videoUri = this.state.videoUri;
     return (
       <View style={styles.container}>
@@ -45,7 +42,7 @@ export default class macroScreen extends React.Component {
             keyExtractor={(item, index) => index.toString()}
           /></View>}
 
-        {videoUri && <VideoPlayer source={{ uri: "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4" }} onEnd={this.playEnded}
+        {videoUri && <VideoPlayer source={{ uri: "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/TearsOfSteel.mp4" }} onEnd={this.playEnded}
           disableFullscreen={true}
           disablePlayPause={true}
           disableSeekbar={true}
@@ -53,8 +50,8 @@ export default class macroScreen extends React.Component {
           disableVolume={true}
           disableBack={true}
         />}
-        <TouchableOpacity onPress={()=>this.navigation.navigate("Contacts")} activeOpacity={1}>
-        {!videoUri && <ContactsButton title="Actions" nav={this.navigation}/>}
+        <TouchableOpacity onPress={() => this.navigation.navigate("ContactsScreen")} activeOpacity={1}>
+          {!videoUri && <ContactsButton title="Actions" nav={this.navigation} />}
         </TouchableOpacity>
       </View>
     );
