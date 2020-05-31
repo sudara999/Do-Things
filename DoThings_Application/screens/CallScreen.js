@@ -15,6 +15,15 @@ import {
   TouchableOpacity
 } from 'react-native';
 import VideoPlayer from 'react-native-video-controls';
+import { NativeModules } from 'react-native';
+
+const ScreenRecorder = NativeModules.ScreenRecorder;
+
+function recordScreen() {
+    console.log(NativeModules);
+    console.log(ScreenRecorder);
+    ScreenRecorder.show('Awesome', ScreenRecorder.SHORT);
+}
 
 export default class CallScreen extends React.Component {
     constructor({ navigation }) {
@@ -47,7 +56,7 @@ export default class CallScreen extends React.Component {
                         <Image source={require('../img/askforhelp.png')} style={{top: 10}}/>
                     </View>
                     <View style={{flex: 1, flexDirection: "row", left:-30}}>
-                        <TouchableOpacity onPress={this.handlePress}>
+                        <TouchableOpacity onPress={recordScreen}>
                             <Image source={require('../img/accept.png')} style={{top: 10}}/>
                         </TouchableOpacity>
                         <TouchableOpacity onPress={()=>this.navigation.navigate("ActionsScreen")}>
