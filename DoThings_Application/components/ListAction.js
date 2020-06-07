@@ -9,22 +9,43 @@ import {
 // import Icon from 'react-native-vector-icons/dist/FontAwesome';
 
 const ListAction = ({ action, handlePress }) => {
+    const display = (action.length == 2);
     return (
-        <View style={styles.container} >
-            <TouchableOpacity style={styles.listAction} onPress={() => handlePress((action[1]).path)}>
-                <ImageBackground style={styles.postIt} source={require("../img/post_it.png")}
-                >
-                    <Text style={styles.text}>
-                        {action[0].action_name}
-                    </Text></ImageBackground>
-            </TouchableOpacity>
-            {(action[1].action_name!="Nonee") && <TouchableOpacity style={styles.listAction} onPress={() => handlePress((action[1]).path)} >
-                <ImageBackground style={styles.postIt} source={require("../img/post_it.png")}
-                >
-                    <Text style={styles.text}>
-                        {action[1].action_name}
-                    </Text></ImageBackground>
-            </TouchableOpacity>}
+        <View>
+            {display &&
+                <View style={styles.container} >
+                    <View style={styles.listAction}>
+                        <TouchableOpacity onPress={() => handlePress((action[0]).path)}>
+                            <ImageBackground style={styles.postIt} source={require("../img/post_it.png")}
+                            >
+                                <Text style={styles.text}>
+                                    {action[0].action_name}
+                                </Text></ImageBackground>
+                        </TouchableOpacity>
+                    </View>
+                    <View style={styles.listAction}>
+                        <TouchableOpacity onPress={() => handlePress((action[1]).path)} >
+                            <ImageBackground style={styles.postIt} source={require("../img/post_it.png")}
+                            >
+                                <Text style={styles.text}>
+                                    {action[1].action_name}
+                                </Text></ImageBackground>
+                        </TouchableOpacity>
+                    </View>
+                </View>}
+            {!display &&
+                <View>
+                    <View style={styles.listAction} >
+                        <TouchableOpacity onPress={() => handlePress((action[0]).path)}>
+                            <ImageBackground style={styles.postIt} source={require("../img/post_it.png")}
+                            >
+                                <Text style={styles.text}>
+                                    {action[0].action_name}
+                                </Text></ImageBackground>
+                        </TouchableOpacity>
+                    </View>
+                </View>}
+
         </View>
     );
 };
@@ -32,10 +53,12 @@ const ListAction = ({ action, handlePress }) => {
 const styles = StyleSheet.create({
     container: {
         alignItems: 'center',
-        justifyContent: 'center',
+        justifyContent: 'center'
     },
     listAction: {
-        padding: 15,
+        marginTop: 10,
+        marginBottom: 30,
+        marginHorizontal: 10,
         alignItems: 'center',
         justifyContent: 'center',
     },
