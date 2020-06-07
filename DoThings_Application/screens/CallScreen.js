@@ -19,10 +19,14 @@ import { NativeModules } from 'react-native';
 
 const ScreenRecorder = NativeModules.ScreenRecorder;
 
-function recordScreen() {
+function startRecordingScreen() {
     console.log(NativeModules);
     console.log(ScreenRecorder);
-    ScreenRecorder.show('Awesome', ScreenRecorder.SHORT);
+    ScreenRecorder.startSharingScreen();
+}
+
+function stopRecordingScreen() {
+  ScreenRecorder.stopSharingScreen();
 }
 
 export default class CallScreen extends React.Component {
@@ -56,10 +60,11 @@ export default class CallScreen extends React.Component {
                         <Image source={require('../img/askforhelp.png')} style={{top: 10}}/>
                     </View>
                     <View style={{flex: 1, flexDirection: "row", left:-30}}>
-                        <TouchableOpacity onPress={recordScreen}>
+                        <TouchableOpacity onPress={startRecordingScreen}>
                             <Image source={require('../img/accept.png')} style={{top: 10}}/>
                         </TouchableOpacity>
-                        <TouchableOpacity onPress={()=>this.navigation.navigate("ActionsScreen")}>
+                        {/* <TouchableOpacity onPress={()=>this.navigation.navigate("ActionsScreen")}> */}
+                        <TouchableOpacity onPress={stopRecordingScreen}>
                           <Image source={require('../img/decline.png')} style={{top: 10}}/>
                         </TouchableOpacity>
                     </View>

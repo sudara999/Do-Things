@@ -1,5 +1,3 @@
-// CustomToastPackage.java
-
 package com.dothings_application;
 
 import com.facebook.react.ReactPackage;
