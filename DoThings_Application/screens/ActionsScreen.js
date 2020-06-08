@@ -48,11 +48,10 @@ export default class ActionsScreen extends React.Component {
   }
 
   handleRight = () => {
-    console.log(this.list.current.getScrollableNode());
     this.list.current.scrollToIndex({
       animated: true,
       index: this.state.scrollIndex + 1,
-      viewPosition: 0
+      viewPosition: 0.5
     });
     console.log("moved to right");
   }
@@ -61,7 +60,7 @@ export default class ActionsScreen extends React.Component {
     this.list.current.scrollToIndex({
       animated: true,
       index: this.state.scrollIndex - 1,
-      viewPosition: 0
+      viewPosition: 0.5
     });
     console.log("moved to left");
   }
