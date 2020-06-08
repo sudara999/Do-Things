@@ -28,8 +28,6 @@ export default class ActionsScreen extends React.Component {
       modalOpen: false,
       added: false,
       scrollIndex: 0,
-      right: true,
-      left: true
     }
     this.navigation = navigation;
     this.route = route;
