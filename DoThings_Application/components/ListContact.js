@@ -16,6 +16,11 @@ const ListContact = ({ contact, navigation, change }) => {
         require('../img/user_photo_2.png'),
         require('../img/user_photo_3.png'),
         require('../img/user_photo_4.png')]);
+    const contact_backgrounds = [
+        require('../img/contact.png'),
+        require('../img/contact2.png'),
+        require('../img/contact3.png')
+    ];
     const shareOptions = {
         title: 'Whatisgoing',
         message: 'This person requests your help on the app DoThings', // Note that according to the documentation at least one of "message" or "url" fields is required
@@ -27,8 +32,8 @@ const ListContact = ({ contact, navigation, change }) => {
         <View style={styles.container}>
             {!last &&
                 <View style={styles.listContact}>
-                    <ImageBackground style={styles.contact} source={require("../img/contact.png")}>
-                        <Image style={styles.user_photo} source={cardImage[contact.id]}></Image>
+                    <ImageBackground style={styles.contact} source={contact_backgrounds[contact.id % 3]}>
+                        <Image style={styles.user_photo} source={cardImage[contact.id % 4]}></Image>
                         <Text style={styles.text}>
                             {contact.helper_name}
                         </Text>
@@ -50,7 +55,10 @@ const ListContact = ({ contact, navigation, change }) => {
                         <Text style={styles.info_2}>
                             A helper can create actions for you to replay later.
                         </Text>
-                        <TouchableOpacity onPress={() => { Share.share(shareOptions); }}>
+                        <TouchableOpacity onPress={() => {
+                            change();
+                            Share.share(shareOptions);
+                        }}>
                             <Image style={styles.button} source={require("../img/add_a_helper_button.png")}></Image>
                         </TouchableOpacity>
                     </ImageBackground>

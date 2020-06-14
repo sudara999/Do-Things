@@ -73,18 +73,20 @@ export default function EndScreen({ navigation }) {
                 onChangeText={text => setDescription(text)}
                 style={[styles.textInput, { height: 300 }]}
                 placeholder="Describe the action" />
-            <View style={{ flex: 1, flexDirection: "row" }}>
+            <View style={{ flex: 2, flexDirection: "row", alignItems: 'center', justifyContent: 'space-between' }}>
                 <TouchableOpacity
                     onPress={handleSave}>
                     <Image source={require("../img/save_button.png")}></Image>
                 </TouchableOpacity>
-                <TouchableOpacity>
+                <TouchableOpacity style={{ marginLeft: 20 }}>
                     <Image source={require("../img/discard_button.png")}></Image>
                 </TouchableOpacity>
             </View>
-            <TouchableOpacity>
-                <Image source={require("../img/continue_button.png")}></Image>
-            </TouchableOpacity>
+            <View style={{ alignItems: 'center' }}>
+                <TouchableOpacity>
+                    <Image source={require("../img/continue_button.png")}></Image>
+                </TouchableOpacity></View>
+
         </View>
     );
 }

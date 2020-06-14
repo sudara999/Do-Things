@@ -11,7 +11,7 @@ import {
 import ContactsHeader from "../components/ContactsHeader"
 import GoBackButton from "../components/GoBackButton"
 // import contactsData from "../data/contacts.json"
-// import contactsData2 from "../data/contacts2.json"
+import contactsData2 from "../data/contacts2.json"
 import ListContact from "../components/ListContact"
 import AsyncStorage from '@react-native-community/async-storage';
 
@@ -77,7 +77,13 @@ export default class ContactsScreen extends React.Component {
   }
 
   render() {
-    const right = (this.state.scrollIndex < this.state.data.length - 1);
+    var right;
+    if (this.state.added == true) {
+      right = (this.state.scrollIndex < contactsData2.length - 1);
+    }
+    else {
+      right = (this.state.scrollIndex < this.state.data.length - 1);
+    }
     const left = (this.state.scrollIndex > 0);
     //this.storeData(contactsData);
     //console.log(this.state.data);
@@ -98,7 +104,7 @@ export default class ContactsScreen extends React.Component {
           </View>
           }
           <FlatList ref={this.list} style={styles.action_section}
-            data={this.state.data}
+            data={this.state.added ? contactsData2 : this.state.data}
             horizontal={true}
             showsHorizontalScrollIndicator={false}
             onViewableItemsChanged={this.onViewableItemsChanged}
