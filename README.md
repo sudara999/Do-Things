@@ -19,7 +19,7 @@ In order to solve this, we wanted to provide remote access so that the people re
 [Video]( https://drive.google.com/file/d/1q61lLPtI8YvnFgHM9qoRaOm8hfHbAdQk/view)
 
 ### Mid-fidelity prototype + Video
-[Prototype](https://www.figma.com/file/JuAICXW3Js3UEXYbXsNnz3/Do-Things?node-id=0%3A1
+[Prototype](https://www.figma.com/file/JuAICXW3Js3UEXYbXsNnz3/Do-Things?node-id=0%3A1)
 [Video](https://github.com/sudara999/Do-Things/blob/appDev/User%20Research/Do-Things%20Mid%20Fidelity%20Prototype%20Video.mp4)
 
 ### Final presentation video ###
