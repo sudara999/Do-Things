@@ -32,12 +32,12 @@ export default class MHomeScreen extends React.Component {
                   </View>
                 </TouchableOpacity> */}
                 <TouchableOpacity backgroundColor="green" 
-                                  style={{flex:1, backgroundColor:"rgba(255,0,0,0.1)", height:100, width:100,
-                                  position:"absolute", bottom:100, left:150, zIndex:100}} 
+                                  style={{flex:1, backgroundColor:"rgba(255,0,0,0.3)", height:100, width:100,
+                                  position:"absolute", bottom:20, left:150, zIndex:100}} 
                                   type="outline" title="Go to Second Demo" 
                                   onPress={() => this.navigation.navigate("MAppDrawer")} />
-                <View style={{flex:1, position:"absolute", top:30, right:40}}>
-                <Toolbar style={{flex:1}} navigation={this.navigation}/>
+                <View style={{flex:1, position:"absolute", top:20, right:-80}}>
+                <Toolbar style={{flex:1}} navigation={this.navigation} recordState={false}/>
                 </View>
               </ImageBackground>
               {/* <Image source={image}></Image> */}

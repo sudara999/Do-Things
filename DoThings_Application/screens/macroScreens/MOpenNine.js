@@ -27,8 +27,8 @@ export default class MOpenNine extends React.Component {
         return(
             <View style={{flex:1}}>
               <ImageBackground source={image} style={{flex: 1}}>
-                <View style={{flex:1, position:"absolute", top:30, right:40}}>
-                <Toolbar style={{flex:1}} navigation={this.navigation}/>
+                <View style={{flex:1, position:"absolute", top:20, right:-80}}>
+                <Toolbar style={{flex:1}} navigation={this.navigation} recordState={true}/>
                 </View>
               </ImageBackground>
               {/* <Image source={image}></Image> */}

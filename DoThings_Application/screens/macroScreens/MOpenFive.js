@@ -36,8 +36,8 @@ export default class MOpenFive extends React.Component {
                                   position:"absolute", top:5, left:10, zIndex:100}} 
                                   type="outline" title="Go to Second Demo" 
                                   onPress={() => this.navigation.navigate("MOpenSix")} />
-                <View style={{flex:1, position:"absolute", top:30, right:40}}>
-                <Toolbar style={{flex:1}} navigation={this.navigation}/>
+                <View style={{flex:1, position:"absolute", top:20, right:-80}}>
+                <Toolbar style={{flex:1}} navigation={this.navigation} recordState={true}/>
                 </View>
               </ImageBackground>
               {/* <Image source={image}></Image> */}

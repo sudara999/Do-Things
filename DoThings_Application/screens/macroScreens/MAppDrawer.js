@@ -32,8 +32,8 @@ export default class MAppDrawer extends React.Component {
                                   position:"absolute", bottom:230, left:160, zIndex:100}} 
                                   type="outline" title="Go to Second Demo" 
                                   onPress={() => this.navigation.navigate("MOpenThree")} />
-                <View style={{flex:1, position:"absolute", top:30, right:40}}>
-                <Toolbar style={{flex:1}} navigation={this.navigation}/>
+                <View style={{flex:1, position:"absolute", top:20, right:-80}}>
+                <Toolbar style={{flex:1}} navigation={this.navigation} recordState={true}/>
                 </View>
               </ImageBackground>
             </View>

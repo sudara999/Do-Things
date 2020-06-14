@@ -28,18 +28,18 @@ export default class Toolbar extends React.Component {
     constructor(props) {
         super();
         this.state = {
-          record: false,
+          record: props.recordState,
           pause: false,
           sound: true,
           dropdown: false
         }
-        console.log(props);
+        // this.toggleState = props.toggleState;
         this.navigation = props.navigation;
       }
     render() {
         return(
             <View style={{flex:1, flexDirection:"row", width: 200, height: 200, backgroundColor: "rgba(0,0,0,0)"}}>
-              <TouchableOpacity onPress={()=>{this.setState({record:!this.state.record})}}>
+              <TouchableOpacity onPress={()=>{this.setState({record:true})}}>
                 {!this.state.record && <Image source={record}></Image>}
                 {this.state.record && 
                 <TouchableOpacity onPress={()=>{this.navigation.navigate("EndScreen")}}>
@@ -57,8 +57,8 @@ export default class Toolbar extends React.Component {
                     {!this.state.sound && <Image source={mute}></Image>}
                     </TouchableOpacity>
                     <TouchableOpacity onPress={()=>{this.setState({pause:!this.state.pause})}}>
-                    {this.state.pause && <Image source={pause}></Image>}
-                    {!this.state.pause && <Image source={play}></Image>}
+                    {!this.state.pause && <Image source={pause}></Image>}
+                    {this.state.pause && <Image source={play}></Image>}
                     </TouchableOpacity>
                     <TouchableOpacity onPress={()=>{this.navigation.navigate("ActionsScreen")}}>
                       <Image source={disconnect}></Image>
