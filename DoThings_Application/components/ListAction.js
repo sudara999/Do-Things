@@ -29,7 +29,6 @@ const ListAction = ({ action, handlePress, design }) => {
     return (
         <View>
             <Modal visible={modalOpen} transparent={true} onRequestClose={() => this.setState({ modalOpen: false })}>
-
                 <View style={styles.modal_container}><ImageBackground style={styles.modal_background} animationType={"slide"}
                     transparent={false} source={require("../img/modal_background_action.png")}>
                     <TouchableOpacity onPress={() => setModalOpen(false)} style={styles.back_modal_button} >
@@ -79,9 +78,8 @@ const ListAction = ({ action, handlePress, design }) => {
                         alignItems: 'center',
                         justifyContent: 'center'
                     }} >
-                        <TouchableOpacity onPress={() => handlePress((action[0]))}>
-                            <ImageBackground style={styles.postIt} source={design[0]}
-                            >
+                        <TouchableOpacity onPress={() => handleModalOpen((action[0]))}>
+                            <ImageBackground style={styles.postIt} source={design[0]}>
                                 <Text style={styles.text}>
                                     {action[0].action_name}
                                 </Text></ImageBackground>

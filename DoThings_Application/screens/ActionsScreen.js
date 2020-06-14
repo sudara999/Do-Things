@@ -13,12 +13,11 @@ import {
 import DothingsHeader from "../components/DothingsHeader";
 import ContactsButton from '../components/ContactsButton';
 import ListAction from '../components/ListAction';
-// import actionData from "../data/actions.json";
+import actionData from "../data/actions.json";
 // import actionData2 from "../data/actions2.json";
 import VideoPlayer from 'react-native-video-controls';
 import { TouchableWithoutFeedback } from 'react-native-gesture-handler';
 import AsyncStorage from '@react-native-community/async-storage';
-
 
 
 export default class ActionsScreen extends React.Component {
@@ -26,10 +25,12 @@ export default class ActionsScreen extends React.Component {
     super();
     this.state = {
       videoUri: null,
-      modalOpen: false,
+      notiModalOpen: false,
+      overlayModalOpen: false,
       added: false,
       scrollIndex: 0,
-      data: []
+      data: [],
+      paused: false
     }
     this.navigation = navigation;
     this.route = route;
@@ -62,14 +63,14 @@ export default class ActionsScreen extends React.Component {
     }
   }
 
-  componentWillReceiveProps = () => {
+  UNSAFE_componentWillReceiveProps = () => {
     if (this.route.params?.newAction)
       console.log("mine: " + this.route.params.newAction);
-    this.setState({ modalOpen: true, added: true });
+    this.setState({ notiModalOpen: true, added: true });
   }
 
   handlePress = (path) => {
-    this.setState({ videoUri: path });
+    this.setState({ videoUri: path, overlayModalOpen: true });
     console.log(path);
   }
 
@@ -91,8 +92,12 @@ export default class ActionsScreen extends React.Component {
     console.log("moved to left");
   }
 
+  playStarted = () => {
+    this.setState({ overlayModalOpen: true });
+  }
+
   playEnded = () => {
-    this.setState({ videoUri: null });
+    this.setState({ videoUri: null, overlayModalOpen: false });
   }
 
   onViewableItemsChanged = ({ viewableItems, changed }) => {
@@ -101,24 +106,27 @@ export default class ActionsScreen extends React.Component {
 
   render() {
     const videoUri = this.state.videoUri;
-    const modalOpen = this.state.modalOpen;
+    const notiModalOpen = this.state.notiModalOpen;
     const right = (this.state.scrollIndex < this.state.data.length - 1);
     const left = (this.state.scrollIndex > 0);
-    // this.storeData(actionData);
+    const paused = this.state.paused;
+    const overlayModalOpen = this.state.overlayModalOpen;
     return (
       <View style={styles.container}>
-        <Modal visible={modalOpen} transparent={true} onRequestClose={() => this.setState({ modalOpen: false })}>
+        <Modal visible={notiModalOpen} transparent={true} onRequestClose={() => this.setState({ notiModalOpen: false })}>
           <View style={styles.modal_container}><ImageBackground style={styles.modal_background} animationType={"slide"}
             transparent={false} source={require("../img/modal_background.png")}>
-            <TouchableOpacity onPress={() => this.setState({ modalOpen: false })} >
+            <TouchableOpacity onPress={() => this.setState({ notiModalOpen: false })} >
               <Image style={styles.back_modal_button} source={require("../img/back_modal_button.png")} />
             </TouchableOpacity>
             <Text style={styles.modal_text}>A new action has been added </Text>
-            <TouchableOpacity onPress={() => this.setState({ modalOpen: false })} >
+            <TouchableOpacity onPress={() => this.setState({ notiModalOpen: false })} >
               <Image style={styles.check_it_out_button} source={require("../img/check_it_out_button.png")} />
             </TouchableOpacity>
           </ImageBackground></View>
         </Modal>
+
+
 
         {!videoUri && <DothingsHeader title="Actions" />}
         {!videoUri && <View style={styles.main_container}>
@@ -133,9 +141,8 @@ export default class ActionsScreen extends React.Component {
               viewabilityConfig={{
                 itemVisiblePercentThreshold: 50
               }}
-              renderItem={({ item, index }) => {
-                return (<ListAction action={item} design={this.post_it_colors[index % 3]} handlePress={this.handlePress} />);
-              }
+              renderItem={({ item, index }) =>
+                <ListAction action={item} design={this.post_it_colors[index % 3]} handlePress={this.handlePress} />
               }
               keyExtractor={(item, index) => index.toString()}
             />
@@ -154,13 +161,30 @@ export default class ActionsScreen extends React.Component {
         </View>}
         {videoUri && <VideoPlayer fullscreen={true} resizeMode="cover" source={require("../videos/sample1.mp4")}
           onEnd={this.playEnded}
+          onPlay={this.playStarted}
           disableFullscreen={true}
           disablePlayPause={true}
           disableSeekbar={true}
           disableTimer={true}
           disableVolume={true}
           disableBack={true}
+          fullscreen={true}
+          paused={paused}
         />}
+        <Modal visible={overlayModalOpen} transparent={true} onRequestClose={() => this.setState({ overlayModalOpen: false })}>
+          <View style={styles.overlay_modal_container}><ImageBackground style={styles.overlay_modal_background} animationType={"slide"}
+            transparent={false} source={require("../img/overlay_modal_background.png")}>
+            {!paused && <TouchableOpacity onPress={() => this.setState({ paused: true })} >
+              <Image style={styles.pause_modal_button} source={require("../img/pause_button.png")} />
+            </TouchableOpacity>}
+            {paused && <TouchableOpacity onPress={() => this.setState({ paused: false })} >
+              <Image style={styles.pause_modal_button} source={require("../img/play_button.png")} />
+            </TouchableOpacity>}
+            <TouchableOpacity onPress={() => this.setState({ paused: false, videoUri: null, overlayModalOpen: false })} >
+              <Image style={styles.pause_modal_button} source={require("../img/stop_button.png")} />
+            </TouchableOpacity>
+          </ImageBackground></View>
+        </Modal>
         {!videoUri &&
           <TouchableOpacity onPress={() => this.navigation.navigate("ContactsScreen")} activeOpacity={1}>
             <ContactsButton title="Actions" nav={this.navigation} />
@@ -197,7 +221,6 @@ const styles = StyleSheet.create({
     width: 350,
     height: 300
   },
-
   check_it_out_button: {
     marginVertical: 25
   },
@@ -228,6 +251,23 @@ const styles = StyleSheet.create({
     left: 10,
     top: 250,
     zIndex: 1
+  },
+  overlay_modal_container: {
+    alignItems: 'flex-start',
+    justifyContent: 'flex-end',
+    flex: 4,
+    flexDirection: 'row',
+    padding: 5,
+    backgroundColor: 'transparent'
+  },
+  overlay_modal_background: {
+    width: 106,
+    height: 47,
+    flexDirection: 'row'
+  },
+  pause_modal_button: {
+    marginVertical: 5,
+    marginLeft: 10
   }
 });
 
