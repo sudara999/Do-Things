@@ -13,10 +13,11 @@ import {
 import DothingsHeader from "../components/DothingsHeader";
 import ContactsButton from '../components/ContactsButton';
 import ListAction from '../components/ListAction';
-import actionData from "../data/actions.json";
-import actionData2 from "../data/actions2.json";
+// import actionData from "../data/actions.json";
+// import actionData2 from "../data/actions2.json";
 import VideoPlayer from 'react-native-video-controls';
 import { TouchableWithoutFeedback } from 'react-native-gesture-handler';
+import AsyncStorage from '@react-native-community/async-storage';
 
 console.disableYellowBox = true;
 
@@ -28,10 +29,34 @@ export default class ActionsScreen extends React.Component {
       modalOpen: false,
       added: false,
       scrollIndex: 0,
+      data: {}
     }
     this.navigation = navigation;
     this.route = route;
     this.list = React.createRef();
+    this.getData();
+  }
+
+  storeData = async (value) => {
+    try {
+      const jsonValue = JSON.stringify(value)
+      //console.log(jsonValue);
+      await AsyncStorage.setItem('actions', jsonValue)
+    } catch (e) {
+      console.log(e);
+    }
+  }
+
+  getData = async () => {
+    try {
+      const jsonValue = await AsyncStorage.getItem('actions')
+      if (jsonValue != null) {
+        this.setState({ data: JSON.parse(jsonValue) })
+      };
+
+    } catch (e) {
+      console.log(e)
+    }
   }
 
   componentWillReceiveProps = () => {
@@ -74,9 +99,9 @@ export default class ActionsScreen extends React.Component {
   render() {
     const videoUri = this.state.videoUri;
     const modalOpen = this.state.modalOpen;
-    const right = (this.state.scrollIndex < actionData.length - 1);
+    const right = (this.state.scrollIndex < this.state.data.length - 1);
     const left = (this.state.scrollIndex > 0);
-
+    // this.storeData(actionData);
     return (
       <View style={styles.container}>
         <Modal visible={modalOpen} transparent={true} onRequestClose={() => this.setState({ modalOpen: false })}>
@@ -98,7 +123,7 @@ export default class ActionsScreen extends React.Component {
             <FlatList
               ref={this.list}
               style={styles.action_section}
-              data={this.state.added ? actionData2 : actionData}
+              data={this.state.data}
               horizontal={true}
               showsHorizontalScrollIndicator={false}
               onViewableItemsChanged={this.onViewableItemsChanged}
