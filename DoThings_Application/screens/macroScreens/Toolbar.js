@@ -42,7 +42,7 @@ export default class Toolbar extends React.Component {
               <TouchableOpacity onPress={()=>{this.setState({record:!this.state.record})}}>
                 {!this.state.record && <Image source={record}></Image>}
                 {this.state.record && 
-                <TouchableOpacity onPress={()=>{}}>
+                <TouchableOpacity onPress={()=>{this.navigation.navigate("EndScreen")}}>
                 <Image source={stop}></Image>
                 </TouchableOpacity>}
               </TouchableOpacity>
