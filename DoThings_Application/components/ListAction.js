@@ -138,7 +138,7 @@ const styles = StyleSheet.create({
     back_modal_button: {
         position: "absolute",
         top: 10,
-        left: -5
+        left: 3
     },
     modal_title: {
         position: "absolute",

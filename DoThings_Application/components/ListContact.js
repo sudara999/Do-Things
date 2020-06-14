@@ -14,7 +14,7 @@ const ListContact = ({ contact, navigation, change }) => {
     const [cardImage, useCardImage] = useState([
         require('../img/user_photo.png'),
         require('../img/user_photo_2.png'),
-        require('../img/user_photo_3.png'), 
+        require('../img/user_photo_3.png'),
         require('../img/user_photo_4.png')]);
     const shareOptions = {
         title: 'Whatisgoing',
@@ -50,7 +50,7 @@ const ListContact = ({ contact, navigation, change }) => {
                         <Text style={styles.info_2}>
                             A helper can create actions for you to replay later.
                         </Text>
-                        <TouchableOpacity onPress={() => {Share.share(shareOptions);change()}}>
+                        <TouchableOpacity onPress={() => { Share.share(shareOptions); }}>
                             <Image style={styles.button} source={require("../img/add_a_helper_button.png")}></Image>
                         </TouchableOpacity>
                     </ImageBackground>
