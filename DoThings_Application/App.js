@@ -36,6 +36,16 @@ import TransitionToHelper from './TransitionToHelper';
 import CallScreen from './screens/CallScreen';
 import ActionsScreen from "./screens/ActionsScreen";
 import EndScreen from "./screens/EndScreen";
+//Below are sample macro screens.
+import MHomeScreen from './screens/macroScreens/MHomeScreen';
+import MAppDrawer from './screens/macroScreens/MAppDrawer';
+import MOpenThree from './screens/macroScreens/MOpenThree';
+import MOpenFour from './screens/macroScreens/MOpenFour';
+import MOpenFive from './screens/macroScreens/MOpenFive';
+import MOpenSix from './screens/macroScreens/MOpenSix';
+import MOpenSeven from './screens/macroScreens/MOpenSeven';
+import MOpenEight from './screens/macroScreens/MOpenEight';
+import MOpenNine from './screens/macroScreens/MOpenNine';
 // import DothingsHeader from "./components/DothingsHeader";
 
 
@@ -100,6 +110,7 @@ function reactIntro({ navigation }) {
 export default function App({ navigation }) {
   return (
     <NavigationContainer>{
+      // <Stack.Navigator initialRouteName="MHomeScreen">
       <Stack.Navigator initialRouteName="ActionsScreen">
         <Stack.Screen name="Intro" component={reactIntro} />
         {/* <Stack.Screen name="Contacts" component={Contacts} options={{headerTitle:()=><DothingsHeader title="Contacts"/>, headerLeft:null}}/> */}
@@ -109,6 +120,16 @@ export default function App({ navigation }) {
         {/* <Stack.Screen name="macroScreen" component={macroScreen} options={{headerTitle:()=><DothingsHeader title="Actions"/>, headerLeft:null}}/> */}
         <Stack.Screen name="ActionsScreen" component={ActionsScreen} options={{ headerShown: false }} />
         <Stack.Screen name="EndScreen" component={EndScreen} options={{ headerShown: false }} />
+        {/* Below are all the macro screens */}
+        <Stack.Screen name="MHomeScreen" component={MHomeScreen} options={{ headerShown: false }} />
+        <Stack.Screen name="MAppDrawer" component={MAppDrawer} options={{ headerShown: false }} />
+        <Stack.Screen name="MOpenThree" component={MOpenThree} options={{ headerShown: false }} />
+        <Stack.Screen name="MOpenFour" component={MOpenFour} options={{ headerShown: false }} />
+        <Stack.Screen name="MOpenFive" component={MOpenFive} options={{ headerShown: false }} />
+        <Stack.Screen name="MOpenSix" component={MOpenSix} options={{ headerShown: false }} />
+        <Stack.Screen name="MOpenSeven" component={MOpenSeven} options={{ headerShown: false }} />
+        <Stack.Screen name="MOpenEight" component={MOpenEight} options={{ headerShown: false }} />
+        <Stack.Screen name="MOpenNine" component={MOpenNine} options={{ headerShown: false }} />
       </Stack.Navigator>
     }</NavigationContainer>
   );

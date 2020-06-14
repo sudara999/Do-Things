@@ -3,14 +3,17 @@ import {
   StyleSheet,
   FlatList,
   View,
-  TouchableOpacity
+  TouchableOpacity,
+  TouchableWithoutFeedback,
+  Image
 } from 'react-native';
 
 import ContactsHeader from "../components/ContactsHeader"
 import GoBackButton from "../components/GoBackButton"
-import contactsData from "../data/contacts.json"
-import contactsData2 from "../data/contacts2.json"
+// import contactsData from "../data/contacts.json"
+// import contactsData2 from "../data/contacts2.json"
 import ListContact from "../components/ListContact"
+import AsyncStorage from '@react-native-community/async-storage';
 
 
 export default class ContactsScreen extends React.Component {
@@ -18,32 +21,96 @@ export default class ContactsScreen extends React.Component {
     super();
     this.navigation = navigation;
     this.state = {
-      added: false
+      added: false,
+      scrollIndex: 0,
+      data: []
+    };
+    this.getData();
+    this.list = React.createRef();
+  }
+
+  storeData = async (value) => {
+    try {
+      const jsonValue = JSON.stringify(value)
+      //console.log(jsonValue);
+      await AsyncStorage.setItem('contacts', jsonValue)
+    } catch (e) {
+      console.log(e);
+    }
+  }
+
+  getData = async () => {
+    try {
+      const jsonValue = await AsyncStorage.getItem('contacts')
+      if (jsonValue != null) {
+        this.setState({ data: JSON.parse(jsonValue) })
+      };
+
+    } catch (e) {
+      console.log(e)
     }
   }
 
   change = () => {
-      this.setState({added: true});
+    this.setState({ added: true });
   }
-  
+  onViewableItemsChanged = ({ viewableItems, changed }) => {
+    this.setState({ scrollIndex: viewableItems[0].index })
+  }
+
+  handleRight = () => {
+    this.list.current.scrollToIndex({
+      animated: true,
+      index: this.state.scrollIndex + 1,
+      viewPosition: 0.5
+    });
+    console.log("moved to right");
+  }
+
+  handleLeft = () => {
+    this.list.current.scrollToIndex({
+      animated: true,
+      index: this.state.scrollIndex - 1,
+      viewPosition: 0.5
+    });
+    console.log("moved to left");
+  }
+
   render() {
+    const right = (this.state.scrollIndex < this.state.data.length - 1);
+    const left = (this.state.scrollIndex > 0);
+    //this.storeData(contactsData);
+    //console.log(this.state.data);
     return (
       <View style={styles.container}>
 
         <ContactsHeader title="Contacts" />
         <View style={styles.main_container}>
-          <FlatList style={styles.action_section}
-            data={this.state.added?contactsData2:contactsData}
+          {right && <View style={styles.right}>
+            <TouchableWithoutFeedback onPress={this.handleRight}>
+              <Image source={require("../img/right.png")} />
+            </TouchableWithoutFeedback>
+          </View>}
+          {left && <View style={styles.left} >
+            <TouchableWithoutFeedback onPress={this.handleLeft} >
+              <Image source={require("../img/left.png")} />
+            </TouchableWithoutFeedback>
+          </View>
+          }
+          <FlatList ref={this.list} style={styles.action_section}
+            data={this.state.data}
             horizontal={true}
             showsHorizontalScrollIndicator={false}
+            onViewableItemsChanged={this.onViewableItemsChanged}
+            viewabilityConfig={{
+              itemVisiblePercentThreshold: 50
+            }}
             renderItem={({ item }) =>
-              <ListContact contact={item} navigation={this.navigation} change={this.change}/>
+              <ListContact contact={item} navigation={this.navigation} change={this.change} />
             }
             keyExtractor={(item, index) => index.toString()}
           />
 
-
-          {/* <Button title="Add a helper" onPress={() => Share.share(shareOptions)} /> */}
         </View>
         <TouchableOpacity onPress={() => this.navigation.navigate("ActionsScreen")} activeOpacity={1}>
           <GoBackButton title="Actions" nav={this.navigation} />
@@ -74,6 +141,18 @@ const styles = StyleSheet.create({
     padding: 15,
     alignItems: 'center',
     justifyContent: 'center',
+  },
+  right: {
+    position: "absolute",
+    right: 10,
+    top: 250,
+    zIndex: 1
+  },
+  left: {
+    position: "absolute",
+    left: 10,
+    top: 250,
+    zIndex: 1
   }
 });
 
