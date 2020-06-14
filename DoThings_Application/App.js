@@ -110,6 +110,7 @@ function reactIntro({ navigation }) {
 export default function App({ navigation }) {
   return (
     <NavigationContainer>{
+      // <Stack.Navigator initialRouteName="MHomeScreen">
       <Stack.Navigator initialRouteName="ActionsScreen">
         <Stack.Screen name="Intro" component={reactIntro} />
         {/* <Stack.Screen name="Contacts" component={Contacts} options={{headerTitle:()=><DothingsHeader title="Contacts"/>, headerLeft:null}}/> */}

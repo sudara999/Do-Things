@@ -14,6 +14,7 @@ import {
   ImageBackground,
   TouchableOpacity
 } from 'react-native';
+import Toolbar from "./Toolbar";
 
 const image = require("./img/2.png")
 
@@ -27,12 +28,12 @@ export default class MAppDrawer extends React.Component {
             <View style={{flex:1}}>
               <ImageBackground source={image} style={{flex: 1}}>
                 <TouchableOpacity backgroundColor="green" 
-                                  style={{flex:1, backgroundColor:"rgba(255,0,0,0.1)", height:100, width:100,
-                                  position:"absolute", bottom:100, left:150, zIndex:100}} 
+                                  style={{flex:1, backgroundColor:"rgba(255,0,0,0.1)", height:70, width:70,
+                                  position:"absolute", bottom:230, left:160, zIndex:100}} 
                                   type="outline" title="Go to Second Demo" 
                                   onPress={() => this.navigation.navigate("MOpenThree")} />
-                <View style={{flex:1, position:"absolute", top:30, right:40, backgroundColor:"blue"}}>
-                <Toolbar style={{flex:1}}/>
+                <View style={{flex:1, position:"absolute", top:30, right:40}}>
+                <Toolbar style={{flex:1}} navigation={this.navigation}/>
                 </View>
               </ImageBackground>
             </View>

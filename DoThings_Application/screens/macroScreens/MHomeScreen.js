@@ -36,7 +36,7 @@ export default class MHomeScreen extends React.Component {
                                   position:"absolute", bottom:100, left:150, zIndex:100}} 
                                   type="outline" title="Go to Second Demo" 
                                   onPress={() => this.navigation.navigate("MAppDrawer")} />
-                <View style={{flex:1, position:"absolute", top:30, right:40, backgroundColor:"blue"}}>
+                <View style={{flex:1, position:"absolute", top:30, right:40}}>
                 <Toolbar style={{flex:1}} navigation={this.navigation}/>
                 </View>
               </ImageBackground>

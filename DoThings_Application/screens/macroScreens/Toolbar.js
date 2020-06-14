@@ -15,6 +15,15 @@ import {
   TouchableOpacity
 } from 'react-native';
 
+const sound = require("./img/sound.png")
+const disconnect = require("./img/disconnect.png")
+const dots = require("./img/dots.png")
+const mute = require("./img/mute.png")
+const pause = require("./img/pause.png")
+const record = require("./img/record.png")
+const stop = require("./img/stop.png")
+const play = require("./img/play.png")
+
 export default class Toolbar extends React.Component {
     constructor(props) {
         super();
@@ -25,33 +34,34 @@ export default class Toolbar extends React.Component {
           dropdown: false
         }
         console.log(props);
+        this.navigation = props.navigation;
       }
     render() {
         return(
-            <View style={{flex:1, flexDirection:"row", width: 130, height: 50}}>
-              {/* <ImageBackground source={image} style={{flex:1}}>
-              </ImageBackground> */}
-              {/* <Image source={image}></Image> */}
+            <View style={{flex:1, flexDirection:"row", width: 200, height: 200, backgroundColor: "rgba(0,0,0,0)"}}>
               <TouchableOpacity onPress={()=>{this.setState({record:!this.state.record})}}>
-                {!this.state.record && <Text>Record</Text>}
-                {this.state.record && <Text>Stop</Text>}
+                {!this.state.record && <Image source={record}></Image>}
+                {this.state.record && 
+                <TouchableOpacity onPress={()=>{}}>
+                <Image source={stop}></Image>
+                </TouchableOpacity>}
               </TouchableOpacity>
               <View style={{flex:1}}>
               <TouchableOpacity onPress={()=>this.setState({dropdown:!this.state.dropdown})}>
-                  <Text>DOTS</Text>
+                <Image source={dots}></Image>
                 </TouchableOpacity>
                 {this.state.dropdown &&
                   <View style={{flex:1}}>
                     <TouchableOpacity onPress={()=>{this.setState({sound:!this.state.sound})}}>
-                    {this.state.sound && <Text>Mute</Text>}
-                    {!this.state.sound && <Text>UnMute</Text>}
+                    {this.state.sound && <Image source={sound}></Image>}
+                    {!this.state.sound && <Image source={mute}></Image>}
                     </TouchableOpacity>
                     <TouchableOpacity onPress={()=>{this.setState({pause:!this.state.pause})}}>
-                    {this.state.pause && <Text>Pause</Text>}
-                    {!this.state.pause && <Text>UnPause</Text>}
+                    {this.state.pause && <Image source={pause}></Image>}
+                    {!this.state.pause && <Image source={play}></Image>}
                     </TouchableOpacity>
                     <TouchableOpacity onPress={()=>{this.navigation.navigate("ActionsScreen")}}>
-                      <Text>Disconnect</Text>
+                      <Image source={disconnect}></Image>
                     </TouchableOpacity>
                   </View>
                 }

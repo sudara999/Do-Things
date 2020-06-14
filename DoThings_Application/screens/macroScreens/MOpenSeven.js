@@ -32,12 +32,12 @@ export default class MOpenSeven extends React.Component {
                   </View>
                 </TouchableOpacity> */}
                 <TouchableOpacity backgroundColor="green" 
-                                  style={{flex:1, backgroundColor:"rgba(255,0,0,0.1)", height:100, width:100,
-                                  position:"absolute", bottom:100, left:150, zIndex:100}} 
+                                  style={{flex:1, backgroundColor:"rgba(255,0,0,0.1)", height:30, width:135,
+                                  position:"absolute", bottom:25, right:15, zIndex:100}} 
                                   type="outline" title="Go to Second Demo" 
-                                  onPress={() => this.navigation.navigate("MAppDrawer")} />
-                <View style={{flex:1, position:"absolute", top:30, right:40, backgroundColor:"blue"}}>
-                <Toolbar style={{flex:1}}/>
+                                  onPress={() => this.navigation.navigate("MOpenEight")} />
+                <View style={{flex:1, position:"absolute", top:30, right:40}}>
+                <Toolbar style={{flex:1}} navigation={this.navigation}/>
                 </View>
               </ImageBackground>
               {/* <Image source={image}></Image> */}
