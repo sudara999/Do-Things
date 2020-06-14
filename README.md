@@ -16,7 +16,7 @@ In order to solve this, we wanted to provide remote access so that the people re
 [Report](https://github.com/sudara999/Do-Things/blob/master/User%20Research/Do-Things%20Formative%20Research.pdf)
 
 ### Paper Prototype Video ###
-[video]( https://drive.google.com/file/d/1q61lLPtI8YvnFgHM9qoRaOm8hfHbAdQk/view)
+[Video]( https://drive.google.com/file/d/1q61lLPtI8YvnFgHM9qoRaOm8hfHbAdQk/view)
 
 ### Mid-fidelity prototype + Video
 [Prototype](https://www.figma.com/file/JuAICXW3Js3UEXYbXsNnz3/Do-Things?node-id=0%3A1
