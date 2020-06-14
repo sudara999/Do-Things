@@ -6,6 +6,19 @@ import {
   TouchableOpacity
 } from 'react-native';
 import VideoPlayer from 'react-native-video-controls';
+import { NativeModules } from 'react-native';
+
+const ScreenRecorder = NativeModules.ScreenRecorder;
+
+function startRecordingScreen() {
+    console.log(NativeModules);
+    console.log(ScreenRecorder);
+    ScreenRecorder.startSharingScreen();
+}
+
+function stopRecordingScreen() {
+  ScreenRecorder.stopSharingScreen();
+}
 
 export default class CallScreen extends React.Component {
   constructor({ navigation }) {
