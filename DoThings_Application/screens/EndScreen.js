@@ -10,7 +10,7 @@ import {
 import Header from '../components/EndScreenHeader';
 import AsyncStorage from '@react-native-community/async-storage';
 
-export default function EndScreen({ navigation }) {
+export default function EndScreen({ navigation, route }) {
     const [title, setTitle] = React.useState('');
     const [description, setDescription] = React.useState('');
     const storeData = async (value) => {
