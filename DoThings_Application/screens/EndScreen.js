@@ -1,56 +1,98 @@
 import React from 'react';
 import {
-  SafeAreaView,
-  StyleSheet,
-  ScrollView,
-  Container,
-  View,
-  Text,
-  StatusBar,
-  Button,
-  Alert,
-  Share,
-  Image,
-  ImageBackground,
-  TextInput,
-  TouchableOpacity
+    StyleSheet,
+    View,
+    Text,
+    Image,
+    TextInput,
+    TouchableOpacity
 } from 'react-native';
-import Header from '../components/DothingsHeader';
+import Header from '../components/EndScreenHeader';
+import AsyncStorage from '@react-native-community/async-storage';
 
-export default function EndScreen({navigation}) {
+export default function EndScreen({ navigation }) {
+    const [title, setTitle] = React.useState('');
+    const [description, setDescription] = React.useState('');
+    const storeData = async (value) => {
+        try {
+            const jsonValue = JSON.stringify(value);
+            //console.log(jsonValue);
+            await AsyncStorage.setItem('actions', jsonValue);
+            navigation.navigate("ActionsScreen", {
+                newAction: true,
+            });
+        } catch (e) {
+            console.log(e);
+        }
+    };
+    const getData = async () => {
+        try {
+            const jsonValue = await AsyncStorage.getItem('actions')
+            console.log(jsonValue);
+            if (jsonValue != null) {
+                var actions = JSON.parse(jsonValue);
+                var newAction = {
+                    "action_name": title,
+                    "time_stamp": "2020/05/05",
+                    "recorded_by": "Tyler Kim",
+                    "description": description,
+                    "path": "./videos/test.mp4"
+                }
+                if (actions[actions.length - 1].length == 1) {
+                    actions[actions.length - 1].push(newAction);
+                }
+                else {
+                    actions.push([newAction]);
+                }
+                console.log(actions);
+                storeData(actions);
+            };
+
+        } catch (e) {
+            console.log(e)
+        }
+    };
+
+    const handleSave = () => {
+        getData();
+        navigation.navigate("ActionsScreen", {
+            newAction: true,
+        })
+    };
+
     return (
         <View style={styles.container}>
             <Header title='Save an Action'></Header>
             <Text style={styles.text}>Title</Text>
             <TextInput
-                style={styles.textInput} 
-                placeholder='Enter a title'/>
+                onChangeText={text => setTitle(text)}
+                style={styles.textInput}
+                placeholder='Enter a title' />
             <Text style={styles.text}>Description</Text>
-            <TextInput 
-                style={[styles.textInput, {height: 250}]}
-                placeholder="Describe the action"/>
-            <View style={{flex: 1, flexDirection:"row"}}>
-            <TouchableOpacity 
-                onPress={()=>navigation.navigate("ActionsScreen", {
-                  newAction: true,
-                })}>
-                <Image source= { require("../img/save_button.png") }></Image>
-            </TouchableOpacity>
-            <TouchableOpacity>
-                <Image source= { require("../img/discard_button.png") }></Image>
-            </TouchableOpacity>
+            <TextInput
+                onChangeText={text => setDescription(text)}
+                style={[styles.textInput, { height: 300 }]}
+                placeholder="Describe the action" />
+            <View style={{ flex: 1, flexDirection: "row" }}>
+                <TouchableOpacity
+                    onPress={handleSave}>
+                    <Image source={require("../img/save_button.png")}></Image>
+                </TouchableOpacity>
+                <TouchableOpacity>
+                    <Image source={require("../img/discard_button.png")}></Image>
+                </TouchableOpacity>
             </View>
             <TouchableOpacity>
-                <Image source= { require("../img/continue_button.png") }></Image>
+                <Image source={require("../img/continue_button.png")}></Image>
             </TouchableOpacity>
         </View>
     );
 }
 
 const styles = StyleSheet.create({
-    container : {
+    container: {
         backgroundColor: "rgba(214, 146, 118, 1)",
-        flex:1,
+        flex: 1,
     },
     text: {
         fontSize: 24,
@@ -59,9 +101,10 @@ const styles = StyleSheet.create({
         fontStyle: "italic",
         width: 150,
         height: 50,
+        marginLeft: 20,
         textAlign: "left",
         textAlignVertical: "center",
-        margin: 10,
+        marginTop: 10
     },
     textInput: {
         fontSize: 24,
@@ -71,10 +114,11 @@ const styles = StyleSheet.create({
         width: 350,
         height: 50,
         textAlign: "left",
-        left:22.5,
+        left: 22.5,
         // marginTop: 10,
         marginBottom: 10,
-        textAlignVertical: "center",
+        textAlignVertical: "top",
+        borderRadius: 5,
         backgroundColor: 'white',
     }
 });

@@ -80,7 +80,7 @@ export default class ContactsScreen extends React.Component {
     const right = (this.state.scrollIndex < this.state.data.length - 1);
     const left = (this.state.scrollIndex > 0);
     //this.storeData(contactsData);
-    console.log(this.state.data);
+    //console.log(this.state.data);
     return (
       <View style={styles.container}>
 

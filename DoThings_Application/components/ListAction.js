@@ -19,8 +19,8 @@ const ListAction = ({ action, handlePress, design }) => {
     });
     const handleModalOpen = (action) => {
         setModalOpen(true);
-        console.log(action.action_name);
-        console.log(state.selected);
+        //    console.log(action.action_name);
+        //     console.log(state.selected); 
         setState(prevState => {
             return { ...prevState, selected: action }
         });

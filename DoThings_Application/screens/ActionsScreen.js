@@ -36,6 +36,13 @@ export default class ActionsScreen extends React.Component {
     this.route = route;
     this.list = React.createRef();
     this.getData();
+    // if (this.route.params?.newAction) {
+    //   console.log("mine: " + this.route.params.newAction);
+    //   this.state.notiModalOpen = true;
+    //   this.state.added = true;
+    //   this.route.params.newAction = false;
+    // }
+
     this.post_it_colors = [[require('../img/post_it.png'), require('../img/post_it_2.png')],
     [require('../img/post_it_3.png'), require('../img/post_it_4.png')],
     [require('../img/post_it_6.png'), require('../img/post_it_5.png')]];
@@ -64,9 +71,11 @@ export default class ActionsScreen extends React.Component {
   }
 
   UNSAFE_componentWillReceiveProps = () => {
-    if (this.route.params?.newAction)
+    if (this.route.params?.newAction) {
       console.log("mine: " + this.route.params.newAction);
-    this.setState({ notiModalOpen: true, added: true });
+      this.getData();
+      this.setState({ notiModalOpen: true, added: true });
+    }
   }
 
   handlePress = (path) => {
@@ -111,6 +120,7 @@ export default class ActionsScreen extends React.Component {
     const left = (this.state.scrollIndex > 0);
     const paused = this.state.paused;
     const overlayModalOpen = this.state.overlayModalOpen;
+    // this.storeData(actionData);
     return (
       <View style={styles.container}>
         <Modal visible={notiModalOpen} transparent={true} onRequestClose={() => this.setState({ notiModalOpen: false })}>
