@@ -19,7 +19,7 @@ import VideoPlayer from 'react-native-video-controls';
 import { TouchableWithoutFeedback } from 'react-native-gesture-handler';
 import AsyncStorage from '@react-native-community/async-storage';
 
-console.disableYellowBox = true;
+
 
 export default class ActionsScreen extends React.Component {
   constructor({ navigation, route }) {
@@ -29,12 +29,15 @@ export default class ActionsScreen extends React.Component {
       modalOpen: false,
       added: false,
       scrollIndex: 0,
-      data: {}
+      data: []
     }
     this.navigation = navigation;
     this.route = route;
     this.list = React.createRef();
     this.getData();
+    this.post_it_colors = [[require('../img/post_it.png'), require('../img/post_it_2.png')],
+    [require('../img/post_it_3.png'), require('../img/post_it_4.png')],
+    [require('../img/post_it_6.png'), require('../img/post_it_5.png')]];
   }
 
   storeData = async (value) => {
@@ -130,8 +133,9 @@ export default class ActionsScreen extends React.Component {
               viewabilityConfig={{
                 itemVisiblePercentThreshold: 50
               }}
-              renderItem={({ item }) =>
-                <ListAction action={item} handlePress={this.handlePress} />
+              renderItem={({ item, index }) => {
+                return (<ListAction action={item} design={this.post_it_colors[index % 3]} handlePress={this.handlePress} />);
+              }
               }
               keyExtractor={(item, index) => index.toString()}
             />

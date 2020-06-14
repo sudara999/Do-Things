@@ -10,9 +10,10 @@ import {
 
 import ContactsHeader from "../components/ContactsHeader"
 import GoBackButton from "../components/GoBackButton"
-import contactsData from "../data/contacts.json"
-import contactsData2 from "../data/contacts2.json"
+// import contactsData from "../data/contacts.json"
+// import contactsData2 from "../data/contacts2.json"
 import ListContact from "../components/ListContact"
+import AsyncStorage from '@react-native-community/async-storage';
 
 
 export default class ContactsScreen extends React.Component {
@@ -21,9 +22,33 @@ export default class ContactsScreen extends React.Component {
     this.navigation = navigation;
     this.state = {
       added: false,
-      scrollIndex: 0
+      scrollIndex: 0,
+      data: []
     };
+    this.getData();
     this.list = React.createRef();
+  }
+
+  storeData = async (value) => {
+    try {
+      const jsonValue = JSON.stringify(value)
+      //console.log(jsonValue);
+      await AsyncStorage.setItem('contacts', jsonValue)
+    } catch (e) {
+      console.log(e);
+    }
+  }
+
+  getData = async () => {
+    try {
+      const jsonValue = await AsyncStorage.getItem('contacts')
+      if (jsonValue != null) {
+        this.setState({ data: JSON.parse(jsonValue) })
+      };
+
+    } catch (e) {
+      console.log(e)
+    }
   }
 
   change = () => {
@@ -52,8 +77,10 @@ export default class ContactsScreen extends React.Component {
   }
 
   render() {
-    const right = (this.state.scrollIndex < contactsData.length - 1);
+    const right = (this.state.scrollIndex < this.state.data.length - 1);
     const left = (this.state.scrollIndex > 0);
+    //this.storeData(contactsData);
+    console.log(this.state.data);
     return (
       <View style={styles.container}>
 
@@ -71,7 +98,7 @@ export default class ContactsScreen extends React.Component {
           </View>
           }
           <FlatList ref={this.list} style={styles.action_section}
-            data={this.state.added ? contactsData2 : contactsData}
+            data={this.state.data}
             horizontal={true}
             showsHorizontalScrollIndicator={false}
             onViewableItemsChanged={this.onViewableItemsChanged}

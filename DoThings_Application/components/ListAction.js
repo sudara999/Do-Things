@@ -10,7 +10,7 @@ import {
 } from 'react-native';
 // import Icon from 'react-native-vector-icons/dist/FontAwesome';
 
-const ListAction = ({ action, handlePress }) => {
+const ListAction = ({ action, handlePress, design }) => {
     const display = (action.length == 2);
     const [modalOpen, setModalOpen] = useState(false);
     const [state, setState] = useState({
@@ -54,7 +54,7 @@ const ListAction = ({ action, handlePress }) => {
                 <View style={styles.container} >
                     <View style={styles.listAction}>
                         <TouchableOpacity onPress={() => handleModalOpen(action[0])}>
-                            <ImageBackground style={styles.postIt} source={require("../img/post_it.png")}
+                            <ImageBackground style={styles.postIt} source={design[0]}
                             >
                                 <Text style={styles.text}>
                                     {action[0].action_name}
@@ -63,7 +63,7 @@ const ListAction = ({ action, handlePress }) => {
                     </View>
                     <View style={styles.listAction}>
                         <TouchableOpacity onPress={() => handleModalOpen(action[1])} >
-                            <ImageBackground style={styles.postIt} source={require("../img/post_it.png")}
+                            <ImageBackground style={styles.postIt} source={design[1]}
                             >
                                 <Text style={styles.text}>
                                     {action[1].action_name}
@@ -80,7 +80,7 @@ const ListAction = ({ action, handlePress }) => {
                         justifyContent: 'center'
                     }} >
                         <TouchableOpacity onPress={() => handlePress((action[0]))}>
-                            <ImageBackground style={styles.postIt} source={require("../img/post_it.png")}
+                            <ImageBackground style={styles.postIt} source={design[0]}
                             >
                                 <Text style={styles.text}>
                                     {action[0].action_name}
