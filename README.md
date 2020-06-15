@@ -12,11 +12,11 @@ The broader goal of our application is to allow greater accessibility for people
 Our research showed that for the vast majority of people, the most convenient and comfortable way to provide help was through some form of direct supervision, however one consistent weakness of direct supervision is both issues with how inconvenient it often is to be able to have this kind of direct supervision, as well as the fact that people receiving help often need help doing the same task multiple times, which adds to the overhead.
 In order to solve this, we wanted to provide remote access so that the people requiring help can reach the helpee at their convenience and the helper can provide the kind of help that has been consistently been found to be the most effective in our surveys (direct supervision).
 
-### Formative Research Report###
+### Formative Research Report ###
 [Report](https://github.com/sudara999/Do-Things/blob/master/User%20Research/Do-Things%20Formative%20Research.pdf)
 
 ### Paper Prototype Video ###
-[Video]( https://drive.google.com/file/d/1q61lLPtI8YvnFgHM9qoRaOm8hfHbAdQk/view)
+[Video](https://drive.google.com/file/d/1q61lLPtI8YvnFgHM9qoRaOm8hfHbAdQk/view)
 
 ### Mid-fidelity prototype + Video
 [Prototype](https://www.figma.com/file/JuAICXW3Js3UEXYbXsNnz3/Do-Things?node-id=0%3A1) <br>
