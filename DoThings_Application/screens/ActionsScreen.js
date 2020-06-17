@@ -120,7 +120,7 @@ export default class ActionsScreen extends React.Component {
     const left = (this.state.scrollIndex > 0);
     const paused = this.state.paused;
     const overlayModalOpen = this.state.overlayModalOpen;
-    // this.storeData(actionData);
+    //this.storeData(actionData);
     return (
       <View style={styles.container}>
         <Modal visible={notiModalOpen} transparent={true} onRequestClose={() => this.setState({ notiModalOpen: false })}>

@@ -11,13 +11,15 @@ import { NativeModules } from 'react-native';
 const ScreenRecorder = NativeModules.ScreenRecorder;
 
 function startRecordingScreen() {
-    console.log(NativeModules);
-    console.log(ScreenRecorder);
-    ScreenRecorder.startSharingScreen();
+  console.log(NativeModules);
+  console.log(ScreenRecorder);
+  ScreenRecorder.startSharingScreen();
 }
 
 function stopRecordingScreen() {
   ScreenRecorder.stopSharingScreen();
+  this.navigation.navigate("EndScreen")
+
 }
 
 export default class CallScreen extends React.Component {
@@ -54,7 +56,7 @@ export default class CallScreen extends React.Component {
             <TouchableOpacity onPress={this.handlePress}>
               <Image source={require('../img/accept.png')} style={{ top: 10 }} />
             </TouchableOpacity>
-            <TouchableOpacity onPress={() => this.navigation.navigate("EndScreen")}>
+            <TouchableOpacity onPress={() => this.navigation.navigate("ActionsScreen")}>
               <Image source={require('../img/decline.png')} style={{ top: 10 }} />
             </TouchableOpacity>
           </View>
