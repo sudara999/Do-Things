@@ -10,7 +10,7 @@ import {
 
 import ContactsHeader from "../components/ContactsHeader"
 import GoBackButton from "../components/GoBackButton"
-// import contactsData from "../data/contacts.json"
+import contactsData from "../data/contacts.json"
 import contactsData2 from "../data/contacts2.json"
 import ListContact from "../components/ListContact"
 import AsyncStorage from '@react-native-community/async-storage';
