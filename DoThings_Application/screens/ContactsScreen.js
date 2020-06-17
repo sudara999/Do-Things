@@ -25,6 +25,7 @@ export default class ContactsScreen extends React.Component {
       scrollIndex: 0,
       data: []
     };
+    this.storeData(contactsData);
     this.getData();
     this.list = React.createRef();
   }
@@ -85,7 +86,7 @@ export default class ContactsScreen extends React.Component {
       right = (this.state.scrollIndex < this.state.data.length - 1);
     }
     const left = (this.state.scrollIndex > 0);
-    //this.storeData(contactsData);
+
     //console.log(this.state.data);
     return (
       <View style={styles.container}>

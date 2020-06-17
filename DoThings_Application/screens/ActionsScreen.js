@@ -31,10 +31,12 @@ export default class ActionsScreen extends React.Component {
       scrollIndex: 0,
       data: [],
       paused: false
+
     }
     this.navigation = navigation;
     this.route = route;
     this.list = React.createRef();
+    this.storeData(actionData);
     this.getData();
     // if (this.route.params?.newAction) {
     //   console.log("mine: " + this.route.params.newAction);
@@ -120,7 +122,7 @@ export default class ActionsScreen extends React.Component {
     const left = (this.state.scrollIndex > 0);
     const paused = this.state.paused;
     const overlayModalOpen = this.state.overlayModalOpen;
-    //this.storeData(actionData);
+
     return (
       <View style={styles.container}>
         <Modal visible={notiModalOpen} transparent={true} onRequestClose={() => this.setState({ notiModalOpen: false })}>
